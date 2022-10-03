@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Shell.NavBarIsVisible="True"
+             x:Class="SRM_System.LoginPage"
+             Title="Логин">
+    <ContentPage.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#2A2922"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="WidthRequest" Value="150"/>
+        </Style>
+    </ContentPage.Resources>
+    <VerticalStackLayout
+        BackgroundColor="#FFFFFF"
+        Spacing="70">
+<!--Вертикальный контейнер для всех элементов на странице-->
+        <VerticalStackLayout
+            Margin="0, 100, 0, 0">
+            <Image Source="user.png"
+                   WidthRequest="130"
+                   Margin="0, 0, 0, 40"/>
+
+            <Frame HorizontalOptions="FillAndExpand"
+                   HeightRequest="{OnPlatform 60, Android=60, iOS=60, WinUI=100}" 
+                   Padding="{OnPlatform 0, Android=0, iOS=0, WinUI=35}" 
+                   CornerRadius="50">
+                <Frame.Margin>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS, Android" Value="20,0,20,20"/>
+                        <On Platform="WinUI" Value="400,0,400,20"/>
+                    </OnPlatform>
+                </Frame.Margin>
+                <Entry VerticalOptions="Center" 
+                       Placeholder="Логин" 
+                       Margin="10,0,0,0"
+                       Keyboard="Email"
+                       x:Name="LoginEntry"/>
+            </Frame>
+
+            <Frame HorizontalOptions="FillAndExpand" 
+                   HeightRequest="{OnPlatform 60, Android=60, iOS=60, WinUI=100}" 
+                   Padding="{OnPlatform 0, Android=0, iOS=0, WinUI=35}"  
+                   CornerRadius="50">
+                <Frame.Margin>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS, Android" Value="20,0,20,20"/>
+                        <On Platform="WinUI" Value="400,0,400,20"/>
+                    </OnPlatform>
+                </Frame.Margin>
+                <Entry VerticalOptions="Center" 
+                       Placeholder="Пароль" 
+                       Margin="10,0,0,0"
+                       IsPassword="true"
+                       x:Name="PasswordEntry"/>
+            </Frame>
+            <Button
+                Text="Войти"
+                Clicked="OnLogInClicked"
+                Style="{StaticResource ButtonStyle}"
+                CornerRadius="{OnPlatform 50, WinUI=10, Android=50, iOS=50}"/>
+            <Label
+                x:Name="RegisterLabel"
+                HorizontalTextAlignment="Center"
+                Margin="10"
+                Text="Зарегестроваться как админинстратор"
+                TextColor="#506D2F"
+                TextDecorations="Underline">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnTapAmdinRegistationLink"/>
+                </Label.GestureRecognizers>
+            </Label>
+            
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+
+</ContentPage>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SRM_System.ConfirmMailPage"
+             Title="Подтердите почту">
+    <ContentPage.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#2A2922"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="WidthRequest" Value="180"/>
+        </Style>
+        <Style TargetType="NavigationPage">
+            <Setter Property="BarBackgroundColor"
+            Value="#506D2F" />
+        </Style>
+    </ContentPage.Resources>
+    <VerticalStackLayout>
+        <Frame
+               HorizontalOptions="FillAndExpand" 
+               HeightRequest="{OnPlatform 60, Android=60, iOS=60, WinUI=100}" 
+               Padding="{OnPlatform 0, Android=0, iOS=0, WinUI=35}"  
+               CornerRadius="50">
+            <Frame.Margin>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="iOS, Android" Value="20,150,20,20"/>
+                    <On Platform="WinUI" Value="400,150,400,20"/>
+                </OnPlatform>
+            </Frame.Margin>
+            <Entry VerticalOptions="Center" 
+                   Placeholder="Введите код из сообщения" 
+                   Margin="10,0,0,0"
+                   Keyboard="Numeric"
+                   x:Name="MailConfirmEntry"/>
+        </Frame>
+        <Button
+                Text="Подтвердить"
+                Clicked="OnMailConfirmClicked"
+                Style="{StaticResource ButtonStyle}"
+                CornerRadius="{OnPlatform 50, WinUI=10, Android=50, iOS=50}"/>
+    </VerticalStackLayout>
+</ContentPage>

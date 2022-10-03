@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SRM_System.AdminFunctions.AddHallManagerPage"
+             Title="Добавить менеджера зала">
+    <ContentPage.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#2A2922"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="WidthRequest" Value="150"/>
+        </Style>
+    </ContentPage.Resources>
+    <VerticalStackLayout>
+        <Frame HorizontalOptions="FillAndExpand"
+                   HeightRequest="{OnPlatform 60, Android=60, iOS=60, WinUI=100}" 
+                   Padding="{OnPlatform 0, Android=0, iOS=0, WinUI=35}" 
+                   CornerRadius="50">
+            <Frame.Margin>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="iOS, Android" Value="20,60,20,20"/>
+                    <On Platform="WinUI" Value="400,60,400,20"/>
+                </OnPlatform>
+            </Frame.Margin>
+            <Entry VerticalOptions="Center" 
+                       Placeholder="Имя и фамилия" 
+                       Margin="10,0,0,0"
+                       Keyboard="Text"
+                       x:Name="NameEntry"/>
+        </Frame>
+        <Frame HorizontalOptions="FillAndExpand"
+                   HeightRequest="{OnPlatform 60, Android=60, iOS=60, WinUI=100}" 
+                   Padding="{OnPlatform 0, Android=0, iOS=0, WinUI=35}" 
+                   CornerRadius="50">
+            <Frame.Margin>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="iOS, Android" Value="20,0,20,20"/>
+                    <On Platform="WinUI" Value="400,0,400,20"/>
+                </OnPlatform>
+            </Frame.Margin>
+            <Entry VerticalOptions="Center" 
+                       Placeholder="Логин" 
+                       Margin="10,0,0,0"
+                       Keyboard="Email"
+                       x:Name="LoginEntry"/>
+        </Frame>
+
+        <Frame HorizontalOptions="FillAndExpand" 
+                   HeightRequest="{OnPlatform 60, Android=60, iOS=60, WinUI=100}" 
+                   Padding="{OnPlatform 0, Android=0, iOS=0, WinUI=35}"  
+                   CornerRadius="50">
+            <Frame.Margin>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="iOS, Android" Value="20,0,20,20"/>
+                    <On Platform="WinUI" Value="400,0,400,20"/>
+                </OnPlatform>
+            </Frame.Margin>
+            <Entry VerticalOptions="Center" 
+                       Placeholder="Пароль" 
+                       Margin="10,0,0,0"
+                       IsPassword="true"
+                       x:Name="PasswordEntry"/>
+        </Frame>
+        <Button
+                Text="Добавить"
+                Clicked="OnAddEmployeeButtonClicked"
+                Style="{StaticResource ButtonStyle}"
+                CornerRadius="{OnPlatform 50, WinUI=10, Android=50, iOS=50}"/>
+    </VerticalStackLayout>
+</ContentPage>

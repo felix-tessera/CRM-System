@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SRM_System.AdminMainPage"
+             Shell.NavBarIsVisible="False"
+             Title="Главная">
+    <ContentPage.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#2A2922"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="WidthRequest" Value="300"/>
+            <Setter Property="HeightRequest" Value="50"/>
+        </Style>
+    </ContentPage.Resources>
+    <VerticalStackLayout
+        Spacing="30">
+        <Frame
+            Margin="0,30,0,0"
+            WidthRequest="{OnPlatform 0, Android=300, iOS=300, WinUI=700}"
+            BackgroundColor="#2A2922"
+            HeightRequest="{OnPlatform 0, Android=50, iOS=50, WinUI=100}">
+            <Picker 
+                x:Name="EmoployeePicker"
+                TitleColor="Orange"
+                Title="Добавить сотрудника"
+                TextColor="White"
+                HeightRequest="50"
+                HorizontalTextAlignment="Center"
+                SelectedIndexChanged="OnAddEmployeeChanged">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Добавить повара</x:String>
+                        <x:String>Добавить менеджера зала</x:String>
+                        <x:String>Добавить шеф-повара</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+        </Frame>
+        <Button 
+            Text="Управление ингредиентами"
+            Style="{StaticResource ButtonStyle}"/>
+        <Button 
+            Text="Управление столами"
+            Style="{StaticResource ButtonStyle}"/>
+        <Button 
+            Text="Управление меню"
+            Style="{StaticResource ButtonStyle}"/>
+
+
+    </VerticalStackLayout>
+</ContentPage>
