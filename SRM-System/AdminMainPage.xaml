@@ -46,7 +46,5 @@
         <Button 
             Text="Управление меню"
             Style="{StaticResource ButtonStyle}"/>
-
-
     </VerticalStackLayout>
 </ContentPage>
