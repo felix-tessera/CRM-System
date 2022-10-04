@@ -23,4 +23,9 @@ public partial class AdminMainPage : ContentPage
 		}
 		EmoployeePicker.SelectedIndex = -1;
 	}
+
+	private async void OnTablesEditClicked(object sender, EventArgs e)
+	{
+		await Shell.Current.GoToAsync("TablesEditPage");
+	}
 }

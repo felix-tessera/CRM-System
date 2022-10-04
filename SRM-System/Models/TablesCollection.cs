@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace SRM_System.Models
 {
-    public class Table
+    public class TablesCollection
     {
-        public int Id { get; set; }
-        public string Сondition { get; set; }
-        public int Seats { get; set; }
+
     }
 }
