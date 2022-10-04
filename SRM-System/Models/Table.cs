@@ -9,7 +9,7 @@ namespace SRM_System.Models
     public class Table
     {
         public int Id { get; set; }
-        public string Сondition { get; set; }
+        public string State { get; set; }
         public int Seats { get; set; }
     }
 }

@@ -9,8 +9,6 @@ public partial class TablesEditPage : ContentPage
 	{
 		InitializeComponent();
 
-		this.BindingContext = Tables;
-
 		Generate();
 	}
 	public ObservableCollection<Table> Tables = new ObservableCollection<Table>();
@@ -22,7 +20,7 @@ public partial class TablesEditPage : ContentPage
 			{
 				Id = i,
 				Seats = i,
-				Ñondition = i.ToString()
+				State = $"Ñîñòîÿíèå: {i}"
 			});
 		}
         

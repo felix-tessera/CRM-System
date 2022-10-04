@@ -5,36 +5,26 @@
              x:Class="SRM_System.AdminFunctions.TablesEditPage"
              x:DataType="models:Table"
              Title="Управление столами">
-    <VerticalStackLayout>
-        <CollectionView
+    <CollectionView VerticalScrollBarVisibility="Always"
                         x:Name="TablesCollectionView">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Padding="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.RowSpan="2"
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Frame BorderColor="Black">
+                    <VerticalStackLayout>
+                        <Label
                        Text="{Binding Id}"
                        HeightRequest="60"
                        WidthRequest="60" />
-                        <Label Grid.Column="1"
+                        <Label
                        Text="{Binding Seats}"
                        FontAttributes="Bold" />
-                        <Label Grid.Row="1"
-                       Grid.Column="1"
-                       Text="{Binding Co}"
+                        <Label
+                       Text="{Binding State}"
                        FontAttributes="Italic"
                        VerticalOptions="End" />
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </VerticalStackLayout>
-    
+                    </VerticalStackLayout>
+                </Frame>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>
