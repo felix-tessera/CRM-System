@@ -14,5 +14,6 @@ namespace SRM_System.Models
         {
             Tables.Clear();
         }
+        public static ObservableCollection<string> Keys = new ObservableCollection<string>();
     }
 }

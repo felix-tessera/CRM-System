@@ -12,78 +12,108 @@
             <Setter Property="WidthRequest" Value="150"/>
         </Style>
     </ContentPage.Resources>
-    <CollectionView 
+    <RefreshView
+        x:Name="TablesRefresh"
+        Refreshing="ToRefreshingTablesRefresh">
+        <CollectionView
+        SelectionMode="Single"
         x:Name="TablesCollectionView">
-        <CollectionView.Header>
-            <VerticalStackLayout>
-                <HorizontalStackLayout
+            <CollectionView.Header>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout
                     HorizontalOptions="Center"
                     Margin="0,20,0,0">
-                    <Frame HorizontalOptions="FillAndExpand"
+                        <Frame HorizontalOptions="FillAndExpand"
                    HeightRequest="{OnPlatform 60, Android=60, iOS=60, WinUI=100}" 
                    Padding="{OnPlatform 0, Android=0, iOS=0, WinUI=35}" 
                            WidthRequest="100"
                    CornerRadius="20">
-                        <Frame.Margin>
-                            <OnPlatform x:TypeArguments="Thickness">
-                                <On Platform="iOS, Android" Value="20,0,20,20"/>
-                                <On Platform="WinUI" Value="400,0,400,20"/>
-                            </OnPlatform>
-                        </Frame.Margin>
-                        <Entry VerticalOptions="Center"
+                            <Frame.Margin>
+                                <OnPlatform x:TypeArguments="Thickness">
+                                    <On Platform="iOS, Android" Value="20,0,20,20"/>
+                                    <On Platform="WinUI" Value="400,0,400,20"/>
+                                </OnPlatform>
+                            </Frame.Margin>
+                            <Entry VerticalOptions="Center"
                        Placeholder="Номер" 
                        Margin="10,0,0,0"
                        Keyboard="Numeric"
                        x:Name="IdEntry"/>
-                    </Frame>
-                    <Frame HorizontalOptions="FillAndExpand"
+                        </Frame>
+                        <Frame HorizontalOptions="FillAndExpand"
                    HeightRequest="{OnPlatform 60, Android=60, iOS=60, WinUI=100}" 
                    Padding="{OnPlatform 0, Android=0, iOS=0, WinUI=35}" 
                            WidthRequest="100"
                    CornerRadius="20">
-                        <Frame.Margin>
-                            <OnPlatform x:TypeArguments="Thickness">
-                                <On Platform="iOS, Android" Value="20,0,20,20"/>
-                                <On Platform="WinUI" Value="400,0,400,20"/>
-                            </OnPlatform>
-                        </Frame.Margin>
-                        <Entry VerticalOptions="Center" 
+                            <Frame.Margin>
+                                <OnPlatform x:TypeArguments="Thickness">
+                                    <On Platform="iOS, Android" Value="20,0,20,20"/>
+                                    <On Platform="WinUI" Value="400,0,400,20"/>
+                                </OnPlatform>
+                            </Frame.Margin>
+                            <Entry VerticalOptions="Center" 
                        Placeholder="Мест" 
                        Margin="10,0,0,0"
                        Keyboard="Numeric"
                        x:Name="SeatsEntry"/>
-                    </Frame>
-                </HorizontalStackLayout>
-                <Button
+                        </Frame>
+                    </HorizontalStackLayout>
+                    <Button
                     Text="Добавить"
                     Margin="0,20,0,20"
                     Clicked="OnAddTableButtonClicked" 
                     Style="{StaticResource ButtonStyle}">
-                </Button>
-            </VerticalStackLayout>
-        </CollectionView.Header>
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <Frame BorderColor="Black"
+                    </Button>
+                </VerticalStackLayout>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <SwipeView.LeftItems>
+                            <SwipeItems>
+                                <SwipeItem
+                                IconImageSource="delete.png"
+                                BackgroundColor="#6d2f2f"
+                                Invoked="OnDeleteSwipeItemInvoked">
+                                </SwipeItem>
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
+
+                        <Frame 
+                       BorderColor="Black"
                        Margin="5"
                        Padding="5"
                        CornerRadius="15"
                        HasShadow="True">
-                    <VerticalStackLayout>
-                        <Label
-                       Text="{Binding Id}"
-                       HeightRequest="60"
-                       WidthRequest="60" />
-                        <Label
-                       Text="{Binding Seats}"
-                       FontAttributes="Bold" />
-                        <Label
-                       Text="{Binding State}"
-                       FontAttributes="Italic"
-                       VerticalOptions="End" />
-                    </VerticalStackLayout>
-                </Frame>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+                            <VerticalStackLayout>
+
+                                <HorizontalStackLayout>
+                                    <Label
+                                    Text="Номер: "
+                                    FontSize="Medium"/>
+                                    <Label
+                            Text="{Binding Id}"
+                            FontSize="Medium"
+                            FontAttributes="Bold"/>
+                                </HorizontalStackLayout>
+
+                                <HorizontalStackLayout>
+                                    <Label
+                                    Text="Мест: "/>
+                                    <Label
+                            Text="{Binding Seats}"
+                            FontAttributes="Bold" />
+                                </HorizontalStackLayout>
+
+                                <Label
+                            Text="{Binding State}"
+                            FontAttributes="Italic"/>
+                            </VerticalStackLayout>
+                        </Frame>
+
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
 </ContentPage>

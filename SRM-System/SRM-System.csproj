@@ -49,6 +49,7 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\client.png" />
+	  <None Remove="Resources\Images\delete.png" />
 	  <None Remove="Resources\Images\employee.png" />
 	  <None Remove="Resources\Images\user.png" />
 	</ItemGroup>
