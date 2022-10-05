@@ -82,10 +82,19 @@
                     </HorizontalStackLayout>
                     <Button
                     Text="Добавить"
-                    Margin="0,20,0,20"
+                    Margin="0,20,0,10"
                     Clicked="OnAddTableButtonClicked" 
                     Style="{StaticResource ButtonStyle}">
                     </Button>
+                    <Border
+                        WidthRequest="100"
+                        Stroke="#2A2922"
+                        StrokeShape="RoundRectangle 20,20,5,5">
+                        <TimePicker
+                            x:Name="BookedTimePicker"
+                            HorizontalOptions="Center"
+                            FontSize="Medium"/>
+                    </Border>
                 </VerticalStackLayout>
             </CollectionView.Header>
             <CollectionView.ItemTemplate>
@@ -141,18 +150,17 @@
 
                                 <HorizontalStackLayout>
                                     <Label
-                                    Text="Мест: "/>
+                                    Text="Мест: "
+                                        FontSize="Medium"/>
                                     <Label
                             Text="{Binding Seats}"
-                            FontAttributes="Bold" />
+                            FontAttributes="Bold" 
+                                        FontSize="Medium"/>
                                 </HorizontalStackLayout>
                                 <HorizontalStackLayout>
                                     <Label
                             Text="{Binding State}"
-                            FontAttributes="Italic"
-                                        FontSize="Medium"/>
-                                    <TimePicker
-                                        FontAttributes="Italic"
+                            FontAttributes="Bold"
                                         FontSize="Medium"/>
                                 </HorizontalStackLayout>
                             </VerticalStackLayout>

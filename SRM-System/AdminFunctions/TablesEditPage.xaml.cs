@@ -28,7 +28,6 @@ public partial class TablesEditPage : ContentPage
             });
             await tableService.AddTable(TablesCollection.Tables[TablesCollection.Tables.Count - 1]);
         }
-
     }
     private void OnDeleteSwipeItemInvoked(object sender, EventArgs e)
     {
@@ -52,24 +51,25 @@ public partial class TablesEditPage : ContentPage
 
         TablesRefresh.IsRefreshing = false;
     }
-
     private void ToFreeStateTableClicked(object sender, EventArgs e)
     {
         TablesCollection.Tables[TablesCollection.Tables.IndexOf((Table)TablesCollectionView.SelectedItem)].State = "Свободно";
         tableService.UpdateTables(TablesCollection.Tables[TablesCollection.Tables.IndexOf((Table)TablesCollectionView.SelectedItem)]);
         tableService.GetTables();
+        tableService.GetTables();
     }
-
     private void ToBusyStateTableClicked(object sender, EventArgs e)
     {
         TablesCollection.Tables[TablesCollection.Tables.IndexOf((Table)TablesCollectionView.SelectedItem)].State = "Занято";
         tableService.UpdateTables(TablesCollection.Tables[TablesCollection.Tables.IndexOf((Table)TablesCollectionView.SelectedItem)]);
         tableService.GetTables();
+        tableService.GetTables();
     }
     private void ToBookedStateTableClicked(object sender, EventArgs e)
     {
-        TablesCollection.Tables[TablesCollection.Tables.IndexOf((Table)TablesCollectionView.SelectedItem)].State = "Забронировано";
+        TablesCollection.Tables[TablesCollection.Tables.IndexOf((Table)TablesCollectionView.SelectedItem)].State = $"Забронировано на {BookedTimePicker.Time}";
         tableService.UpdateTables(TablesCollection.Tables[TablesCollection.Tables.IndexOf((Table)TablesCollectionView.SelectedItem)]);
+        tableService.GetTables();
         tableService.GetTables();
     }
 }
