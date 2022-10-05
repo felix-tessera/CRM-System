@@ -108,8 +108,8 @@
                        CornerRadius="15"
                        HasShadow="True">
                             <VerticalStackLayout>
-
-                                <HorizontalStackLayout>
+                                <HorizontalStackLayout
+                                    Spacing="5">
                                     <Label
                                     Text="Номер: "
                                     FontSize="Medium"/>
@@ -117,6 +117,26 @@
                             Text="{Binding Id}"
                             FontSize="Medium"
                             FontAttributes="Bold"/>
+                                    <Button
+                                        WidthRequest="100"
+                                        HeightRequest="40"
+                                        Text="Свободно"
+                                        Style="{StaticResource ButtonStyle}"
+                                        Clicked="ToFreeStateTableClicked"/>
+                                    <Button
+                                        WidthRequest="80"
+                                        HeightRequest="40"
+                                        Text="Занято"
+                                        Style="{StaticResource ButtonStyle}"
+                                        Clicked="ToBusyStateTableClicked"/>
+
+                                    <Button
+                                        WidthRequest="80"
+                                        HeightRequest="40"
+                                        Text="Бронь"
+                                        Style="{StaticResource ButtonStyle}"
+                                        Clicked="ToBookedStateTableClicked"/>
+
                                 </HorizontalStackLayout>
 
                                 <HorizontalStackLayout>
@@ -126,10 +146,15 @@
                             Text="{Binding Seats}"
                             FontAttributes="Bold" />
                                 </HorizontalStackLayout>
-
-                                <Label
+                                <HorizontalStackLayout>
+                                    <Label
                             Text="{Binding State}"
-                            FontAttributes="Italic"/>
+                            FontAttributes="Italic"
+                                        FontSize="Medium"/>
+                                    <TimePicker
+                                        FontAttributes="Italic"
+                                        FontSize="Medium"/>
+                                </HorizontalStackLayout>
                             </VerticalStackLayout>
                         </Frame>
 

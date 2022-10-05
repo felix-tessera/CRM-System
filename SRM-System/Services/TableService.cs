@@ -53,5 +53,13 @@ namespace SRM_System.Services
        .Child(Key)
        .DeleteAsync();
         }
+
+        public async void UpdateTables(Table table)
+        {
+            await firebaseClient
+                .Child("Tables")
+                .Child(table.Key)
+                .PutAsync(table);
+        }
     }
 }

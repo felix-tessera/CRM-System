@@ -16,7 +16,6 @@ public partial class TablesEditPage : ContentPage
         TablesCollectionView.ItemsSource = TablesCollection.Tables;
     }
     TableService tableService = new TableService();
-
 	private async void OnAddTableButtonClicked(object sender, EventArgs e)
 	{
         if (IdEntry.Text != null && SeatsEntry.Text != null)
@@ -25,13 +24,12 @@ public partial class TablesEditPage : ContentPage
             {
                 Id = IdEntry.Text,
                 Seats = int.Parse(SeatsEntry.Text),
-                State = $"Состояние: ",
+                State = $"Свободно",
             });
             await tableService.AddTable(TablesCollection.Tables[TablesCollection.Tables.Count - 1]);
         }
 
     }
-
     private void OnDeleteSwipeItemInvoked(object sender, EventArgs e)
     {
         try
@@ -46,7 +44,6 @@ public partial class TablesEditPage : ContentPage
 
         }
     }
-
     private void ToRefreshingTablesRefresh(object sender, EventArgs e)
     {
         TablesRefresh.IsRefreshing = true;
@@ -54,5 +51,25 @@ public partial class TablesEditPage : ContentPage
         tableService.GetTables();
 
         TablesRefresh.IsRefreshing = false;
+    }
+
+    private void ToFreeStateTableClicked(object sender, EventArgs e)
+    {
+        TablesCollection.Tables[TablesCollection.Tables.IndexOf((Table)TablesCollectionView.SelectedItem)].State = "Свободно";
+        tableService.UpdateTables(TablesCollection.Tables[TablesCollection.Tables.IndexOf((Table)TablesCollectionView.SelectedItem)]);
+        tableService.GetTables();
+    }
+
+    private void ToBusyStateTableClicked(object sender, EventArgs e)
+    {
+        TablesCollection.Tables[TablesCollection.Tables.IndexOf((Table)TablesCollectionView.SelectedItem)].State = "Занято";
+        tableService.UpdateTables(TablesCollection.Tables[TablesCollection.Tables.IndexOf((Table)TablesCollectionView.SelectedItem)]);
+        tableService.GetTables();
+    }
+    private void ToBookedStateTableClicked(object sender, EventArgs e)
+    {
+        TablesCollection.Tables[TablesCollection.Tables.IndexOf((Table)TablesCollectionView.SelectedItem)].State = "Забронировано";
+        tableService.UpdateTables(TablesCollection.Tables[TablesCollection.Tables.IndexOf((Table)TablesCollectionView.SelectedItem)]);
+        tableService.GetTables();
     }
 }
