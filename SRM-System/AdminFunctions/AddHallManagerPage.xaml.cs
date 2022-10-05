@@ -12,15 +12,18 @@ public partial class AddHallManagerPage : ContentPage
 	}
     private async void OnAddEmployeeButtonClicked(object sender, EventArgs e)
     {
-        HallMenagerService hallMenagerService = new HallMenagerService();
-        EmployeePassword employeePassword = new EmployeePassword();
-        var passwordHash = employeePassword.OnePasswordHash(PasswordEntry.Text);
-        var hallMenager = new HallMenager
+        if (LoginEntry.Text != null && NameEntry.Text != null && PasswordEntry.Text != null)
         {
-            Login = LoginEntry.Text,
-            Name = NameEntry.Text,
-            Password = employeePassword.ByteArrayToString(passwordHash)
-        };
-        await hallMenagerService.AddHallMenager(hallMenager);
+            HallMenagerService hallMenagerService = new HallMenagerService();
+            EmployeePassword employeePassword = new EmployeePassword();
+            var passwordHash = employeePassword.OnePasswordHash(PasswordEntry.Text);
+            var hallMenager = new HallMenager
+            {
+                Login = LoginEntry.Text,
+                Name = NameEntry.Text,
+                Password = employeePassword.ByteArrayToString(passwordHash)
+            };
+            await hallMenagerService.AddHallMenager(hallMenager);
+        }
     }
 }

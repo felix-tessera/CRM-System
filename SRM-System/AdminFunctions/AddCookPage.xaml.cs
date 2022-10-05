@@ -12,15 +12,18 @@ public partial class AddCookPage : ContentPage
 	}
     private async void OnAddEmployeeButtonClicked(object sender, EventArgs e)
     {
-        CookService cookService = new CookService();
-        EmployeePassword employeePassword = new EmployeePassword();
-        var passwordHash = employeePassword.OnePasswordHash(PasswordEntry.Text);
-        var cook = new Cook
+        if (LoginEntry.Text != null && NameEntry.Text != null && PasswordEntry.Text != null)
         {
-            Login = LoginEntry.Text,
-            Name = NameEntry.Text,
-            Password = employeePassword.ByteArrayToString(passwordHash)
-        };
-        await cookService.AddChief(cook);
+            CookService cookService = new CookService();
+            EmployeePassword employeePassword = new EmployeePassword();
+            var passwordHash = employeePassword.OnePasswordHash(PasswordEntry.Text);
+            var cook = new Cook
+            {
+                Login = LoginEntry.Text,
+                Name = NameEntry.Text,
+                Password = employeePassword.ByteArrayToString(passwordHash)
+            };
+            await cookService.AddChief(cook);
+        }
     }
 }

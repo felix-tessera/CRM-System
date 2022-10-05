@@ -13,15 +13,18 @@ public partial class AddChiefPage : ContentPage
 
 	private async void OnAddEmployeeButtonClicked(object sender, EventArgs e)
 	{
-		ChiefService chiefService = new ChiefService();
-		EmployeePassword employeePassword = new EmployeePassword();
-		var passwordHash = employeePassword.OnePasswordHash(PasswordEntry.Text);
-		var chief = new Chief
+		if (LoginEntry.Text != null && NameEntry.Text != null && PasswordEntry.Text != null)
 		{
-			Login = LoginEntry.Text,
-			Name = NameEntry.Text,
-			Password = employeePassword.ByteArrayToString(passwordHash)
-		};
+			ChiefService chiefService = new ChiefService();
+			EmployeePassword employeePassword = new EmployeePassword();
+			var passwordHash = employeePassword.OnePasswordHash(PasswordEntry.Text);
+			var chief = new Chief
+			{
+				Login = LoginEntry.Text,
+				Name = NameEntry.Text,
+				Password = employeePassword.ByteArrayToString(passwordHash)
+			};
 		await chiefService.AddChief(chief);
+		}
 	}
 }

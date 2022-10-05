@@ -11,10 +11,32 @@
             <Setter Property="TextColor" Value="White"/>
             <Setter Property="WidthRequest" Value="150"/>
         </Style>
+        <Style TargetType="SwipeView">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="White"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="#7D5642" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
     </ContentPage.Resources>
     <RefreshView
         x:Name="TablesRefresh"
-        Refreshing="ToRefreshingTablesRefresh">
+        Refreshing="ToRefreshingTablesRefresh"
+        RefreshColor="#506D2F">
         <CollectionView
         SelectionMode="Single"
         x:Name="TablesCollectionView">
@@ -73,7 +95,7 @@
                             <SwipeItems>
                                 <SwipeItem
                                 IconImageSource="delete.png"
-                                BackgroundColor="#6d2f2f"
+                                BackgroundColor="#7D5642"
                                 Invoked="OnDeleteSwipeItemInvoked">
                                 </SwipeItem>
                             </SwipeItems>

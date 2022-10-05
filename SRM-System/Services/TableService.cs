@@ -35,7 +35,7 @@ namespace SRM_System.Services
               .Child("Tables")
               .OnceAsync<Table>();
             TablesCollection.CleanCollection();
-            foreach (var table in tables)
+            foreach (var table in tables)//Запись столов в firebase
             {
                 TablesCollection.Tables.Add(new Table
                 {

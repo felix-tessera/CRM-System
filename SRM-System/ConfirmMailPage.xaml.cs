@@ -1,3 +1,4 @@
+using SRM_System.Common;
 using SRM_System.Models;
 using SRM_System.RegisterLogic;
 using SRM_System.Services;
@@ -15,20 +16,29 @@ public partial class ConfirmMailPage : ContentPage
 	
 	private async void OnMailConfirmClicked(object sender, EventArgs e)
 	{
-		bool mailCheck = MailConfirm.CheckMailMath(MailConfirmEntry.Text);
-		if (mailCheck)
+		try
 		{
-			var admin = new Admin
+			bool mailCheck = MailConfirm.CheckMailMath(MailConfirmEntry.Text);
+
+			if (mailCheck)
 			{
-				Login = Admin.login,
-				Password = Admin.password,
-			};
-			await adminService.AddAdmin(admin);
-			await Shell.Current.GoToAsync("AdminMainPage");
-        }
-		else
+				var admin = new Admin
+				{
+					Login = Admin.login,
+					Password = Admin.password,
+				};
+				await adminService.AddAdmin(admin);
+				await Shell.Current.GoToAsync("AdminMainPage");
+			}
+			else
+			{
+				await DisplayAlert("Неверный код", "Проверьте код и попробуйте еще раз", "ОK");
+			}
+		}
+		catch
 		{
-            await DisplayAlert("Неверный код", "Проверьте код и попробуйте еще раз", "ОK");
+			VibrationAPI.ToVibrate();
+			ConfirmMailFrame.BorderColor = Color.FromRgb(201, 0, 3);
         }
 	}
 }

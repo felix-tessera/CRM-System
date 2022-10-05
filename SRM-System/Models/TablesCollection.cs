@@ -10,7 +10,7 @@ namespace SRM_System.Models
     public class TablesCollection
     {
         public static ObservableCollection<Table> Tables = new ObservableCollection<Table>();
-        public static void CleanCollection()
+        public static void CleanCollection()//Для перезаписи коллекции столов
         {
             Tables.Clear();
         }

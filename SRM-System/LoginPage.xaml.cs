@@ -1,3 +1,4 @@
+using SRM_System.Common;
 using SRM_System.LogInEmoloyee;
 using SRM_System.RegisterLogic;
 using SRM_System.Services;
@@ -19,15 +20,24 @@ public partial class LoginPage : ContentPage
 	EmployeePassword employeePassword = new EmployeePassword();
 	private void OnLogInClicked(object sender, EventArgs e)
 	{
-		//получение логинов и паролей для авторизации
-		adminService.GetAdmin(LoginEntry.Text, 
-			CheckAdminPassword.ByteArrayToString(checkAdmin.OnePasswordHash(PasswordEntry.Text)));
-		chiefService.GetChief(LoginEntry.Text,
-			employeePassword.ByteArrayToString(employeePassword.OnePasswordHash(PasswordEntry.Text)));
-		cookService.GetCooks(LoginEntry.Text,
-			employeePassword.ByteArrayToString(employeePassword.OnePasswordHash(PasswordEntry.Text)));
-		hallMenagerService.GetHallMenager(LoginEntry.Text,
-			employeePassword.ByteArrayToString(employeePassword.OnePasswordHash(PasswordEntry.Text)));
+		try
+		{
+            //получение логинов и паролей для авторизации
+            adminService.GetAdmin(LoginEntry.Text,
+                CheckAdminPassword.ByteArrayToString(checkAdmin.OnePasswordHash(PasswordEntry.Text)));
+            chiefService.GetChief(LoginEntry.Text,
+                employeePassword.ByteArrayToString(employeePassword.OnePasswordHash(PasswordEntry.Text)));
+            cookService.GetCooks(LoginEntry.Text,
+                employeePassword.ByteArrayToString(employeePassword.OnePasswordHash(PasswordEntry.Text)));
+            hallMenagerService.GetHallMenager(LoginEntry.Text,
+                employeePassword.ByteArrayToString(employeePassword.OnePasswordHash(PasswordEntry.Text)));
+        }
+		catch
+		{
+			LoginFrame.BorderColor = Color.FromRgb(201, 0, 3);
+			PasswordFrame.BorderColor = Color.FromRgb(201, 0, 3);
+            VibrationAPI.ToVibrate();
+		}
     }
 
 	private async void OnTapAmdinRegistationLink(object sender, EventArgs e)

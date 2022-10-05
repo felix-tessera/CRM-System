@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging.Abstractions;
 using SRM_System.Models;
 using SRM_System.Services;
 using System.Collections.ObjectModel;
@@ -18,22 +19,32 @@ public partial class TablesEditPage : ContentPage
 
 	private async void OnAddTableButtonClicked(object sender, EventArgs e)
 	{
-        TablesCollection.Tables.Add(new Table
+        if (IdEntry.Text != null && SeatsEntry.Text != null)
         {
-            Id = IdEntry.Text,
-            Seats = int.Parse(SeatsEntry.Text),
-            State = $"Состояние: ",
-        });
+            TablesCollection.Tables.Add(new Table
+            {
+                Id = IdEntry.Text,
+                Seats = int.Parse(SeatsEntry.Text),
+                State = $"Состояние: ",
+            });
+            await tableService.AddTable(TablesCollection.Tables[TablesCollection.Tables.Count - 1]);
+        }
 
-        await tableService.AddTable(TablesCollection.Tables[TablesCollection.Tables.Count-1]);
     }
 
     private void OnDeleteSwipeItemInvoked(object sender, EventArgs e)
     {
-        tableService.RemoveTable(TablesCollection.Tables[TablesCollection.Tables.IndexOf((Table)TablesCollectionView.SelectedItem)].Key);
-        //Удаление выбранного элемента
-      //  tableService.GetTables();
-        TablesCollection.Tables.RemoveAt(TablesCollection.Tables.IndexOf((Table)TablesCollectionView.SelectedItem));
+        try
+        {
+            tableService.RemoveTable(TablesCollection.Tables[TablesCollection.Tables.IndexOf((Table)TablesCollectionView.SelectedItem)].Key);
+            //Удаление выбранного элемента
+            //  tableService.GetTables();
+            TablesCollection.Tables.RemoveAt(TablesCollection.Tables.IndexOf((Table)TablesCollectionView.SelectedItem));
+        }
+        catch
+        {
+
+        }
     }
 
     private void ToRefreshingTablesRefresh(object sender, EventArgs e)

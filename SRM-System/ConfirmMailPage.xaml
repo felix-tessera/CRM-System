@@ -16,6 +16,7 @@
     </ContentPage.Resources>
     <VerticalStackLayout>
         <Frame
+            x:Name="ConfirmMailFrame"
                HorizontalOptions="FillAndExpand" 
                HeightRequest="{OnPlatform 60, Android=60, iOS=60, WinUI=100}" 
                Padding="{OnPlatform 0, Android=0, iOS=0, WinUI=35}"  

@@ -14,24 +14,35 @@ public partial class AdminRegistrationPage : ContentPage
     MailConfirm mailConfirm = new MailConfirm();
     private async void OnRegistrationButtonClicked(object sender, EventArgs e)
 	{
-		CheckAdminPassword checkHashAdminPassword = new CheckAdminPassword();
-		checkHashAdminPassword.RegistrationPasswordsHash(PasswordBase.Text, PasswordConfirmation.Text);
-		bool IsPasswordsMath = checkHashAdminPassword.CheckMatchingPasswords();
-		if (IsPasswordsMath)
+		if (PasswordBase.Text != null && PasswordConfirmation != null)
 		{
-            Password1Frame.BorderColor = Color.FromRgb(80, 110, 47);
-            Password2Frame.BorderColor = Color.FromRgb(80, 110, 47);
+			CheckAdminPassword checkHashAdminPassword = new CheckAdminPassword();
+			checkHashAdminPassword.RegistrationPasswordsHash(PasswordBase.Text, PasswordConfirmation.Text);
+			bool IsPasswordsMath = checkHashAdminPassword.CheckMatchingPasswords();
 
-            mailConfirm.SendConfirmMessage(LoginEntry.Text);
-			Admin.login = LoginEntry.Text;
+			if (IsPasswordsMath && LoginEntry.Text != null)
+			{
+				Password1Frame.BorderColor = Color.FromRgb(80, 110, 47);
+				Password2Frame.BorderColor = Color.FromRgb(80, 110, 47);
 
-            await Shell.Current.GoToAsync("ConfirmMailPage");
-        }
+				mailConfirm.SendConfirmMessage(LoginEntry.Text);
+				Admin.login = LoginEntry.Text;
+
+				await Shell.Current.GoToAsync("ConfirmMailPage");
+			}
+			else
+			{
+				VibrationAPI.ToVibrate();
+				Password1Frame.BorderColor = Color.FromRgb(201, 0, 3);
+				Password2Frame.BorderColor = Color.FromRgb(201, 0, 3);
+			}
+		}
 		else
 		{
-			VibrationAPI.ToVibrate();
-			Password1Frame.BorderColor = Color.FromRgb(201, 0, 3);
+            VibrationAPI.ToVibrate();
+            Password1Frame.BorderColor = Color.FromRgb(201, 0, 3);
             Password2Frame.BorderColor = Color.FromRgb(201, 0, 3);
+			LoginFrame.BorderColor = Color.FromRgb(201, 0, 3);
         }
 	}
 }
