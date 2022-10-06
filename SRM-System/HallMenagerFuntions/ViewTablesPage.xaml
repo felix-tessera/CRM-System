@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:models="clr-namespace:SRM_System.Models"
-             x:Class="SRM_System.AdminFunctions.TablesEditPage"
-             x:DataType="models:Table"
-             Title="Управление столами">
+             x:Class="SRM_System.HallMenagerFuntions.ViewTablesPage"
+             Title="Все столы">
     <ContentPage.Resources>
         <Style x:Key="ButtonStyle" TargetType="Button">
             <Setter Property="BackgroundColor" Value="#2A2922"/>
@@ -21,7 +19,7 @@
                                         Value="White"/>
                             </VisualState.Setters>
                         </VisualState>
-                        
+
                         <VisualState x:Name="Selected">
                             <VisualState.Setters>
                                 <Setter Property="BackgroundColor"
@@ -42,51 +40,8 @@
         x:Name="TablesCollectionView">
             <CollectionView.Header>
                 <VerticalStackLayout>
-                    <HorizontalStackLayout
-                    HorizontalOptions="Center"
-                    Margin="0,20,0,0">
-                        <Frame HorizontalOptions="FillAndExpand"
-                   HeightRequest="{OnPlatform 60, Android=60, iOS=60, WinUI=100}" 
-                   Padding="{OnPlatform 0, Android=0, iOS=0, WinUI=35}" 
-                           WidthRequest="100"
-                   CornerRadius="20">
-                            <Frame.Margin>
-                                <OnPlatform x:TypeArguments="Thickness">
-                                    <On Platform="iOS, Android" Value="20,0,20,20"/>
-                                    <On Platform="WinUI" Value="400,0,400,20"/>
-                                </OnPlatform>
-                            </Frame.Margin>
-                            <Entry VerticalOptions="Center"
-                       Placeholder="Номер" 
-                       Margin="10,0,0,0"
-                       Keyboard="Numeric"
-                       x:Name="IdEntry"/>
-                        </Frame>
-                        <Frame HorizontalOptions="FillAndExpand"
-                   HeightRequest="{OnPlatform 60, Android=60, iOS=60, WinUI=100}" 
-                   Padding="{OnPlatform 0, Android=0, iOS=0, WinUI=35}" 
-                           WidthRequest="100"
-                   CornerRadius="20">
-                            <Frame.Margin>
-                                <OnPlatform x:TypeArguments="Thickness">
-                                    <On Platform="iOS, Android" Value="20,0,20,20"/>
-                                    <On Platform="WinUI" Value="400,0,400,20"/>
-                                </OnPlatform>
-                            </Frame.Margin>
-                            <Entry VerticalOptions="Center" 
-                       Placeholder="Мест" 
-                       Margin="10,0,0,0"
-                       Keyboard="Numeric"
-                       x:Name="SeatsEntry"/>
-                        </Frame>
-                    </HorizontalStackLayout>
-                    <Button
-                    Text="Добавить"
-                    Margin="0,20,0,10"
-                    Clicked="OnAddTableButtonClicked" 
-                    Style="{StaticResource ButtonStyle}">
-                    </Button>
                     <Border
+                        Margin="0,5,0,0"
                         WidthRequest="100"
                         Stroke="#2A2922"
                         StrokeShape="RoundRectangle 20,20,5,5">
@@ -100,16 +55,6 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <SwipeView>
-                        <SwipeView.LeftItems>
-                            <SwipeItems>
-                                <SwipeItem
-                                IconImageSource="delete.png"
-                                BackgroundColor="#7D5642"
-                                Invoked="OnDeleteSwipeItemInvoked">
-                                </SwipeItem>
-                            </SwipeItems>
-                        </SwipeView.LeftItems>
-
                         <Frame 
                        BorderColor="Black"
                        Margin="5"
