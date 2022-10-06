@@ -34,8 +34,11 @@ namespace SRM_System.Services
             var tables = await firebaseClient
               .Child("Tables")
               .OnceAsync<Table>();
+            var SortedTables = from t in tables//сортировка по id
+                               orderby t.Object.Id
+                               select t;
             TablesCollection.CleanCollection();
-            foreach (var table in tables)//Запись столов в firebase
+            foreach (var table in SortedTables)//Запись столов в firebase
             {
                 TablesCollection.Tables.Add(new Table
                 {

@@ -56,20 +56,17 @@ public partial class TablesEditPage : ContentPage
         TablesCollection.Tables[TablesCollection.Tables.IndexOf((Table)TablesCollectionView.SelectedItem)].State = "Свободно";
         tableService.UpdateTables(TablesCollection.Tables[TablesCollection.Tables.IndexOf((Table)TablesCollectionView.SelectedItem)]);
         tableService.GetTables();
-        tableService.GetTables();
     }
     private void ToBusyStateTableClicked(object sender, EventArgs e)
     {
         TablesCollection.Tables[TablesCollection.Tables.IndexOf((Table)TablesCollectionView.SelectedItem)].State = "Занято";
         tableService.UpdateTables(TablesCollection.Tables[TablesCollection.Tables.IndexOf((Table)TablesCollectionView.SelectedItem)]);
         tableService.GetTables();
-        tableService.GetTables();
     }
     private void ToBookedStateTableClicked(object sender, EventArgs e)
     {
         TablesCollection.Tables[TablesCollection.Tables.IndexOf((Table)TablesCollectionView.SelectedItem)].State = $"Забронировано на {BookedTimePicker.Time}";
         tableService.UpdateTables(TablesCollection.Tables[TablesCollection.Tables.IndexOf((Table)TablesCollectionView.SelectedItem)]);
-        tableService.GetTables();
         tableService.GetTables();
     }
 }
