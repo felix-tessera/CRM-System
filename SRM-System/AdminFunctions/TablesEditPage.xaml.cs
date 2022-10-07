@@ -34,8 +34,6 @@ public partial class TablesEditPage : ContentPage
         try
         {
             tableService.RemoveTable(TablesCollection.Tables[TablesCollection.Tables.IndexOf((Table)TablesCollectionView.SelectedItem)].Key);
-            //Удаление выбранного элемента
-            //  tableService.GetTables();
             TablesCollection.Tables.RemoveAt(TablesCollection.Tables.IndexOf((Table)TablesCollectionView.SelectedItem));
         }
         catch

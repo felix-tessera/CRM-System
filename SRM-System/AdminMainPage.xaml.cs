@@ -28,4 +28,9 @@ public partial class AdminMainPage : ContentPage
 	{
 		await Shell.Current.GoToAsync("TablesEditPage");
 	}
+
+	private async void OnIngredientsEditClicked(object sender, EventArgs e)
+	{
+		await Shell.Current.GoToAsync("IngredientsEditPage");
+	}
 }
