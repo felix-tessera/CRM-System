@@ -13,7 +13,7 @@ public partial class ViewTablesPage : ContentPage
         TablesCollectionView.ItemsSource = TablesCollection.Tables;
     }
     TableService tableService = new TableService();
-    private void ToRefreshingTablesRefresh(object sender, EventArgs e)
+        private void ToRefreshingTablesRefresh(object sender, EventArgs e)
     {
         TablesRefresh.IsRefreshing = true;
 

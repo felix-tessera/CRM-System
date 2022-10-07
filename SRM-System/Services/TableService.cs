@@ -37,7 +37,7 @@ namespace SRM_System.Services
             var SortedTables = from t in tables//сортировка по id
                                orderby t.Object.Id
                                select t;
-            TablesCollection.CleanCollection();
+            TablesCollection.Tables.Clear();
             foreach (var table in SortedTables)//Запись столов в firebase
             {
                 TablesCollection.Tables.Add(new Table
@@ -51,10 +51,10 @@ namespace SRM_System.Services
         }
         public async void RemoveTable(string Key)
         {
-           await firebaseClient
-       .Child("Tables")
-       .Child(Key)
-       .DeleteAsync();
+            await firebaseClient
+        .Child("Tables")
+        .Child(Key)
+        .DeleteAsync();
         }
 
         public async void UpdateTables(Table table)

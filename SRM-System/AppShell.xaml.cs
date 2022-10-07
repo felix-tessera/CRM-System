@@ -20,6 +20,7 @@ public partial class AppShell : Shell
         Routing.RegisterRoute("HallMenagerMainPage", typeof(HallMenagerMainPage));
         Routing.RegisterRoute("TablesEditPage", typeof(TablesEditPage));
         Routing.RegisterRoute("ViewTablesPage", typeof(ViewTablesPage));
+        Routing.RegisterRoute("IndgedientsEditPage", typeof(IngredientsEditPage));
     }
     protected override void OnAppearing()
     {
