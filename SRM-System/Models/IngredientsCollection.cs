@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace SRM_System.Models
 {
-    public class TablesCollection
+    public class IngredientsCollection
     {
-        public static ObservableCollection<Table> Tables = new ObservableCollection<Table>();
+        public static ObservableCollection<Ingredient> Ingredients = new ObservableCollection<Ingredient>();
     }
 }

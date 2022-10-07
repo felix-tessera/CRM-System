@@ -1,47 +1,19 @@
-using Microsoft.Extensions.Logging.Abstractions;
 using SRM_System.Models;
 using SRM_System.Services;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
 
-namespace SRM_System.AdminFunctions;
+namespace SRM_System.HallMenagerFuntions;
 
-public partial class TablesEditPage : ContentPage
+public partial class ViewTablesPage : ContentPage
 {
-	public TablesEditPage()
-	{
+	public ViewTablesPage()
+    {
 		InitializeComponent();
 
         tableService.GetTables();
         TablesCollectionView.ItemsSource = TablesCollection.Tables;
     }
     TableService tableService = new TableService();
-	private async void OnAddTableButtonClicked(object sender, EventArgs e)
-	{
-        if (IdEntry.Text != null && SeatsEntry.Text != null)
-        {
-            TablesCollection.Tables.Add(new Table
-            {
-                Id = IdEntry.Text,
-                Seats = int.Parse(SeatsEntry.Text),
-                State = $"Свободно",
-            });
-            await tableService.AddTable(TablesCollection.Tables[TablesCollection.Tables.Count - 1]);
-        }
-    }
-    private void OnDeleteSwipeItemInvoked(object sender, EventArgs e)
-    {
-        try
-        {
-            tableService.RemoveTable(TablesCollection.Tables[TablesCollection.Tables.IndexOf((Table)TablesCollectionView.SelectedItem)].Key);
-            TablesCollection.Tables.RemoveAt(TablesCollection.Tables.IndexOf((Table)TablesCollectionView.SelectedItem));
-        }
-        catch
-        {
-
-        }
-    }
-    private void ToRefreshingTablesRefresh(object sender, EventArgs e)
+        private void ToRefreshingTablesRefresh(object sender, EventArgs e)
     {
         TablesRefresh.IsRefreshing = true;
 

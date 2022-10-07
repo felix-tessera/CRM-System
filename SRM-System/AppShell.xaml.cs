@@ -1,4 +1,5 @@
 ﻿using SRM_System.AdminFunctions;
+using SRM_System.HallMenagerFuntions;
 
 namespace SRM_System;
 
@@ -18,6 +19,8 @@ public partial class AppShell : Shell
         Routing.RegisterRoute("CookMainPage", typeof(CookMainPage));
         Routing.RegisterRoute("HallMenagerMainPage", typeof(HallMenagerMainPage));
         Routing.RegisterRoute("TablesEditPage", typeof(TablesEditPage));
+        Routing.RegisterRoute("ViewTablesPage", typeof(ViewTablesPage));
+        Routing.RegisterRoute("IngredientsEditPage", typeof(IngredientsEditPage));
     }
     protected override void OnAppearing()
     {

@@ -37,6 +37,7 @@
             </Picker>
         </Frame>
         <Button 
+            Clicked="OnIngredientsEditClicked"
             Text="Управление ингредиентами"
             Style="{StaticResource ButtonStyle}"/>
         <Button 

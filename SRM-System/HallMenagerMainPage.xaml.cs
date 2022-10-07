@@ -6,4 +6,9 @@ public partial class HallMenagerMainPage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+	private async void OnTablesViewButtonClicked(object sender, EventArgs e)
+	{
+		await Shell.Current.GoToAsync("ViewTablesPage");
+	}
 }
