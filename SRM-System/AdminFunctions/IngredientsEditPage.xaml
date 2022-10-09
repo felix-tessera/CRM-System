@@ -121,6 +121,21 @@
                        CornerRadius="15"
                        HasShadow="True">
                             <VerticalStackLayout>
+                                <HorizontalStackLayout>
+                                    <Label
+                            Text="{Binding Name}"
+                            FontAttributes="Bold"
+                                        FontSize="Medium"/>
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout>
+                                    <Label
+                                    Text="Количество: "
+                                        FontSize="Medium"/>
+                                    <Label
+                            Text="{Binding Quantity}"
+                            FontAttributes="Bold" 
+                                        FontSize="Medium"/>
+                                </HorizontalStackLayout>
                                 <HorizontalStackLayout
                                     Spacing="5">
                                     <Label
@@ -130,22 +145,6 @@
                             Text="{Binding Id}"
                             FontSize="Medium"
                             FontAttributes="Bold"/>
-                                </HorizontalStackLayout>
-
-                                <HorizontalStackLayout>
-                                    <Label
-                                    Text="Мест: "
-                                        FontSize="Medium"/>
-                                    <Label
-                            Text="{Binding Quantity}"
-                            FontAttributes="Bold" 
-                                        FontSize="Medium"/>
-                                </HorizontalStackLayout>
-                                <HorizontalStackLayout>
-                                    <Label
-                            Text="{Binding Name}"
-                            FontAttributes="Bold"
-                                        FontSize="Medium"/>
                                 </HorizontalStackLayout>
                             </VerticalStackLayout>
                         </Frame>
