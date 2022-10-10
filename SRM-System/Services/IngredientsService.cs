@@ -44,6 +44,7 @@ namespace SRM_System.Services
                     Id = ingredient.Object.Id,
                     Name = ingredient.Object.Name,
                     Quantity = ingredient.Object.Quantity,
+                    Unit = ingredient.Object.Unit,
                     Key = ingredient.Object.Key,
                 });
             }

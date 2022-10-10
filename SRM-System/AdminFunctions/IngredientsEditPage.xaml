@@ -46,15 +46,14 @@
             <CollectionView.Header>
                 <VerticalStackLayout
                     Spacing="10">
-                    <HorizontalStackLayout>
+                    <VerticalStackLayout>
                         <Frame HorizontalOptions="Fill"
-                   HeightRequest="{OnPlatform 60, Android=60, iOS=60, WinUI=100}" 
-                   Padding="{OnPlatform 0, Android=0, iOS=0, WinUI=35}" 
-                           WidthRequest="160"
-                   CornerRadius="20">
+                            HeightRequest="{OnPlatform 60, Android=60, iOS=60, WinUI=100}" 
+                            Padding="{OnPlatform 0, Android=0, iOS=0, WinUI=35}" 
+                            CornerRadius="20">
                             <Frame.Margin>
                                 <OnPlatform x:TypeArguments="Thickness">
-                                    <On Platform="iOS, Android" Value="10,10,0,0"/>
+                                    <On Platform="iOS, Android" Value="10,10,10,0"/>
                                     <On Platform="WinUI" Value="400,0,400,20"/>
                                 </OnPlatform>
                             </Frame.Margin>
@@ -64,7 +63,8 @@
                        Keyboard="Default"
                        x:Name="NameEntry"/>
                         </Frame>
-                        <Frame HorizontalOptions="Fill"
+                        <HorizontalStackLayout>
+                            <Frame HorizontalOptions="Fill"
                    HeightRequest="{OnPlatform 60, Android=60, iOS=60, WinUI=100}" 
                    Padding="{OnPlatform 0, Android=0, iOS=0, WinUI=35}" 
                            WidthRequest="100"
@@ -81,24 +81,42 @@
                        Keyboard="Default"
                        x:Name="QuantityEntry"/>
                         </Frame>
-                        <Frame HorizontalOptions="Fill"
+                            <Frame HorizontalOptions="Fill"
+                   HeightRequest="{OnPlatform 60, Android=60, iOS=60, WinUI=100}" 
+                   Padding="{OnPlatform 0, Android=0, iOS=0, WinUI=35}" 
+                           WidthRequest="80"
+                   CornerRadius="20">
+                                <Frame.Margin>
+                                    <OnPlatform x:TypeArguments="Thickness">
+                                        <On Platform="iOS, Android" Value="10,10,0,0"/>
+                                        <On Platform="WinUI" Value="400,0,400,20"/>
+                                    </OnPlatform>
+                                </Frame.Margin>
+                                <Entry VerticalOptions="Center"
+                       Placeholder="Ед. изм." 
+                       Margin="5,0,0,0"
+                       Keyboard="Default"
+                       x:Name="UnitEntry"/>
+                            </Frame>
+                            <Frame HorizontalOptions="Fill"
                    HeightRequest="{OnPlatform 60, Android=60, iOS=60, WinUI=100}" 
                    Padding="{OnPlatform 0, Android=0, iOS=0, WinUI=35}" 
                            WidthRequest="60"
                    CornerRadius="20">
-                            <Frame.Margin>
-                                <OnPlatform x:TypeArguments="Thickness">
-                                    <On Platform="iOS, Android" Value="10,10,0,0"/>
-                                    <On Platform="WinUI" Value="400,0,400,20"/>
-                                </OnPlatform>
-                            </Frame.Margin>
-                            <Entry VerticalOptions="Center"
+                                <Frame.Margin>
+                                    <OnPlatform x:TypeArguments="Thickness">
+                                        <On Platform="iOS, Android" Value="10,10,0,0"/>
+                                        <On Platform="WinUI" Value="400,0,400,20"/>
+                                    </OnPlatform>
+                                </Frame.Margin>
+                                <Entry VerticalOptions="Center"
                        Placeholder="Номер" 
                        Margin="5,0,0,0"
                        Keyboard="Numeric"
                        x:Name="IdEntry"/>
-                        </Frame>
-                    </HorizontalStackLayout>
+                            </Frame>
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
                     <Button
                         Text="Добавить"
                         Clicked="OnIngredientAddClicked"
@@ -140,6 +158,10 @@
                                         FontSize="Small"/>
                                     <Label
                                         Text="{Binding Quantity}"
+                                        FontAttributes="Bold" 
+                                        FontSize="Small"/>
+                                    <Label
+                                        Text="{Binding Unit}"
                                         FontAttributes="Bold" 
                                         FontSize="Small"/>
                                 </HorizontalStackLayout>

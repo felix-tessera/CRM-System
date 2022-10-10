@@ -11,6 +11,7 @@ namespace SRM_System.Models
         public string Id { get; set; }
         public string Name { get; set; }
         public string Quantity { get; set; }
+        public string Unit { get; set; }
         public string Key { get; set; }
     }
 }
