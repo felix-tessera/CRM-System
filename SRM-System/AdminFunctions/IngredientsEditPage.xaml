@@ -39,6 +39,10 @@
         <CollectionView
             SelectionMode="Single"
             x:Name="IngredientsCollectionView">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"
+                        Span="2"/>
+            </CollectionView.ItemsLayout>
             <CollectionView.Header>
                 <VerticalStackLayout
                     Spacing="10">
@@ -98,7 +102,8 @@
                     <Button
                         Text="Добавить"
                         Clicked="OnIngredientAddClicked"
-                        Style="{StaticResource ButtonStyle}"/>
+                        Style="{StaticResource ButtonStyle}"
+                        Margin="0,0,0,10"/>
                 </VerticalStackLayout>
             </CollectionView.Header>
             <CollectionView.ItemTemplate>
@@ -115,36 +120,38 @@
                         </SwipeView.LeftItems>
 
                         <Frame 
-                       BorderColor="Black"
-                       Margin="5"
-                       Padding="5"
-                       CornerRadius="15"
-                       HasShadow="True">
+                            BorderColor="Black"
+                            Margin="5"
+                            Padding="5"
+                            CornerRadius="15"
+                            HasShadow="True">
                             <VerticalStackLayout>
                                 <HorizontalStackLayout>
                                     <Label
-                            Text="{Binding Name}"
-                            FontAttributes="Bold"
-                                        FontSize="Medium"/>
+                                        LineBreakMode="WordWrap"
+                                        Text="{Binding Name}"
+                                        FontAttributes="Bold"
+                                        FontSize="Small"/>
                                 </HorizontalStackLayout>
                                 <HorizontalStackLayout>
                                     <Label
-                                    Text="Количество: "
-                                        FontSize="Medium"/>
+                                        LineBreakMode="WordWrap"
+                                        Text="Количество: "
+                                        FontSize="Small"/>
                                     <Label
-                            Text="{Binding Quantity}"
-                            FontAttributes="Bold" 
-                                        FontSize="Medium"/>
+                                        Text="{Binding Quantity}"
+                                        FontAttributes="Bold" 
+                                        FontSize="Small"/>
                                 </HorizontalStackLayout>
                                 <HorizontalStackLayout
                                     Spacing="5">
                                     <Label
-                                    Text="Номер: "
-                                    FontSize="Medium"/>
+                                        Text="Номер: "
+                                        FontSize="Small"/>
                                     <Label
-                            Text="{Binding Id}"
-                            FontSize="Medium"
-                            FontAttributes="Bold"/>
+                                        Text="{Binding Id}"
+                                        FontSize="Small"
+                                        FontAttributes="Bold"/>
                                 </HorizontalStackLayout>
                             </VerticalStackLayout>
                         </Frame>
