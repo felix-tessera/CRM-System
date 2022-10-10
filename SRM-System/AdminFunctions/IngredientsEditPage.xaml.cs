@@ -36,12 +36,13 @@ public partial class IngredientsEditPage : ContentPage
 
 	private async void OnIngredientAddClicked(object sender, EventArgs e)
 	{
-        if (NameEntry.Text != null && IdEntry.Text != null && QuantityEntry.Text != null)
+        if (NameEntry.Text != null && IdEntry.Text != null && QuantityEntry.Text != null && UnitEntry.Text != null)
         { 
             IngredientsCollection.Ingredients.Add(new Ingredient
             {
                 Id = IdEntry.Text,
                 Quantity = QuantityEntry.Text,
+                Unit = UnitEntry.Text,
                 Name = NameEntry.Text,
             });
             await ingredientsService
