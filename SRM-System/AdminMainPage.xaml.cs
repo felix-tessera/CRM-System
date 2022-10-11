@@ -33,4 +33,9 @@ public partial class AdminMainPage : ContentPage
 	{
 		await Shell.Current.GoToAsync("IngredientsEditPage");
 	}
+
+	private async void OnMenuItemEditClicked(object sender, EventArgs e)
+	{
+		await Shell.Current.GoToAsync("MenuEditPage");
+	}
 }

@@ -28,7 +28,8 @@ namespace SRM_System.Services
                 .Child(ingredient.Key)
                 .PutAsync(ingredient);
         }
-        public async void GetIngregients()
+        public async         Task
+GetIngregients()
         {
             var ingredients = await firebaseClient
               .Child("Ingredients")

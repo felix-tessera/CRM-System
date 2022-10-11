@@ -21,6 +21,7 @@ public partial class AppShell : Shell
         Routing.RegisterRoute("TablesEditPage", typeof(TablesEditPage));
         Routing.RegisterRoute("ViewTablesPage", typeof(ViewTablesPage));
         Routing.RegisterRoute("IngredientsEditPage", typeof(IngredientsEditPage));
+        Routing.RegisterRoute("MenuEditPage", typeof(MenuEditPage));
     }
     protected override void OnAppearing()
     {
