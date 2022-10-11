@@ -7,13 +7,11 @@ using System.Threading.Tasks;
 
 namespace SRM_System.Models
 {
-    public class MenuItem
+    public class MenuItemm
     {
         public string Key { get; set; }
         public string Name { get; set; }
         public string Price { get; set; }
         public string Currency { get; set; }
-
-        public ObservableCollection<Ingredient> MenuItemIngredients = new ObservableCollection<Ingredient>();
     }
 }

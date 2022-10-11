@@ -50,11 +50,11 @@ public partial class IngredientsEditPage : ContentPage
         }
     }
 
-    private void ToRefreshingIngredientsRefresh(object sender, EventArgs e)
+    private async void ToRefreshingIngredientsRefresh(object sender, EventArgs e)
     {
         IngredientsRefresh.IsRefreshing = true;
 
-        ingredientsService.GetIngregients();
+        await ingredientsService.GetIngregients();
 
         IngredientsRefresh.IsRefreshing = false;
     }

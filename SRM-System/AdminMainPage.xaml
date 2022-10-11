@@ -45,6 +45,7 @@
             Text="Управление столами"
             Style="{StaticResource ButtonStyle}"/>
         <Button 
+            Clicked="OnMenuItemEditClicked"
             Text="Управление меню"
             Style="{StaticResource ButtonStyle}"/>
     </VerticalStackLayout>

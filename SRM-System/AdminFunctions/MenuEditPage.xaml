@@ -2,11 +2,164 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SRM_System.AdminFunctions.MenuEditPage"
+             x:DataType="models:MenuItemm"
+             xmlns:models="clr-namespace:SRM_System.Models"
              Title="MenuEditPage">
+    <ContentPage.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#2A2922"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="WidthRequest" Value="150"/>
+        </Style>
+        <Style TargetType="SwipeView">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="White"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="#7D5642" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <RefreshView
+            x:Name="MenuItemsRefresh"
+            Refreshing="ToRefreshingMenuItemsRefresh"
+            RefreshColor="#506D2F">
+            <CollectionView
+            SelectionMode="Single"
+            x:Name="MenuItemsCollectionView">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.Header>
+                    <VerticalStackLayout
+                    Spacing="0">
+                        <VerticalStackLayout>
+                            <Frame HorizontalOptions="Fill"
+                            HeightRequest="{OnPlatform 60, Android=60, iOS=60, WinUI=100}" 
+                            Padding="{OnPlatform 0, Android=0, iOS=0, WinUI=35}" 
+                            CornerRadius="20">
+                                <Frame.Margin>
+                                    <OnPlatform x:TypeArguments="Thickness">
+                                        <On Platform="iOS, Android" Value="10,10,10,0"/>
+                                        <On Platform="WinUI" Value="400,0,400,20"/>
+                                    </OnPlatform>
+                                </Frame.Margin>
+                                <Entry 
+                                    VerticalOptions="Center"
+                                    Placeholder="Название" 
+                                    Margin="10,0,0,0"
+                                    Keyboard="Default"
+                                    x:Name="NameEntry"/>
+                            </Frame>
+                            <HorizontalStackLayout>
+                                <Frame HorizontalOptions="Fill"
+                   HeightRequest="{OnPlatform 60, Android=60, iOS=60, WinUI=100}" 
+                   Padding="{OnPlatform 0, Android=0, iOS=0, WinUI=35}" 
+                           WidthRequest="100"
+                   CornerRadius="20">
+                                    <Frame.Margin>
+                                        <OnPlatform x:TypeArguments="Thickness">
+                                            <On Platform="iOS, Android" Value="10,10,0,0"/>
+                                            <On Platform="WinUI" Value="400,0,400,20"/>
+                                        </OnPlatform>
+                                    </Frame.Margin>
+                                    <Entry 
+                                        VerticalOptions="Center"
+                                        Placeholder="Цена" 
+                                        Margin="10,0,0,0"
+                                        Keyboard="Default"
+                                        x:Name="PriceEntry"/>
+                                </Frame>
+                                <Frame 
+                                    HorizontalOptions="Fill"
+                                    HeightRequest="{OnPlatform 60, Android=60, iOS=60, WinUI=100}" 
+                                    Padding="{OnPlatform 0, Android=0, iOS=0, WinUI=35}" 
+                                    WidthRequest="80"
+                                    CornerRadius="20">
+                                    <Frame.Margin>
+                                        <OnPlatform x:TypeArguments="Thickness">
+                                            <On Platform="iOS, Android" Value="10,10,0,0"/>
+                                            <On Platform="WinUI" Value="400,0,400,20"/>
+                                        </OnPlatform>
+                                    </Frame.Margin>
+                                    <Entry 
+                                        VerticalOptions="Center"
+                                        Placeholder="Валюта" 
+                                        Margin="5,0,0,0"
+                                        Keyboard="Default"
+                                        x:Name="CurrencyEntry"/>
+                                </Frame>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                        <Button
+                        Text="Добавить"
+                        Clicked="ToMenuItemAddButtonClicked"
+                        Style="{StaticResource ButtonStyle}"
+                        Margin="0,10,0,10"/>
+                    </VerticalStackLayout>
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.LeftItems>
+                                <SwipeItems>
+                                    <SwipeItem
+                                        IconImageSource="delete.png"
+                                        BackgroundColor="#7D5642"
+                                        Invoked="OnDeleteMenuItemClick">
+                                    </SwipeItem>
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+
+                            <Frame 
+                                BorderColor="Black"
+                                Margin="5"
+                                Padding="5"
+                                CornerRadius="15"
+                                HasShadow="True">
+                                <VerticalStackLayout>
+                                    <HorizontalStackLayout>
+                                        <Label
+                                            LineBreakMode="WordWrap"
+                                            Text="{Binding Name}"
+                                            FontAttributes="Bold"
+                                            FontSize="Small"/>
+                                    </HorizontalStackLayout>
+                                    <HorizontalStackLayout>
+                                        <Label
+                                            LineBreakMode="WordWrap"
+                                            Text="Цена: "
+                                            FontSize="Small"/>
+                                        <Label
+                                            Text="{Binding Price}"
+                                            FontAttributes="Bold" 
+                                            FontSize="Small"/>
+                                        <Label
+                                            Text=" "/>
+                                        <Label
+                                            Text="{Binding Currency}"
+                                            FontAttributes="Bold" 
+                                            FontSize="Small"/>
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+                            </Frame>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
     </VerticalStackLayout>
 </ContentPage>
