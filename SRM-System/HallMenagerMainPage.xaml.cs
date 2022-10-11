@@ -11,4 +11,9 @@ public partial class HallMenagerMainPage : ContentPage
 	{
 		await Shell.Current.GoToAsync("ViewTablesPage");
 	}
+
+	private async void OnCreateOrderButtonClicked(object sender, EventArgs e)
+	{
+        await Shell.Current.GoToAsync("OrderAcceptanceAndDispatchPage");
+    }
 }

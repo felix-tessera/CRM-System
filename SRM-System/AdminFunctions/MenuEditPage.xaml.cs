@@ -9,6 +9,7 @@ public partial class MenuEditPage : ContentPage
 	public MenuEditPage()
 	{
 		InitializeComponent();
+
         menuItemService.GetMenuItems();
 		MenuItemsCollectionView.ItemsSource = MenuItemsCollection.MenuItems;
     }
@@ -23,7 +24,6 @@ public partial class MenuEditPage : ContentPage
                 Price = PriceEntry.Text,
                 Currency = CurrencyEntry.Text,
             });
-            IngredientsInMenuItemCollection.IngredientsInMenuItem.Clear();
 
             await menuItemService
                 .AddMenuItem(MenuItemsCollection.MenuItems[MenuItemsCollection.MenuItems.Count - 1]);
