@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SRM_System.AdminFunctions.MenuEditPage"
+             x:Class="SRM_System.HallMenagerFuntions.OrderAcceptanceAndDispatchPage"
              x:DataType="models:MenuItemm"
              xmlns:models="clr-namespace:SRM_System.Models"
-             Title="MenuEditPage">
+             Title="OrderAcceptanceAndDispatchPage">
     <ContentPage.Resources>
         <Style x:Key="ButtonStyle" TargetType="Button">
             <Setter Property="BackgroundColor" Value="#2A2922"/>
@@ -31,15 +31,15 @@
                 </VisualStateGroupList>
             </Setter>
         </Style>
-    </ContentPage.Resources>
+    </ContentPage.Resources><!--Стили-->
     <VerticalStackLayout>
         <RefreshView
             x:Name="MenuItemsRefresh"
             Refreshing="ToRefreshingMenuItemsRefresh"
             RefreshColor="#506D2F">
             <CollectionView
-            SelectionMode="Single"
-            x:Name="MenuItemsCollectionView">
+                SelectionMode="Single"
+                x:Name="MenuItemsCollectionView">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical"/>
                 </CollectionView.ItemsLayout>
@@ -47,69 +47,34 @@
                     <!--Заголовок коллекции-->
                     <VerticalStackLayout
                     Spacing="0">
-                        <VerticalStackLayout>
-                            <Frame HorizontalOptions="Fill"
+                        <SearchBar 
+                            x:Name="MenuItemSearchBar"
+                            TextChanged="OnSearchBarTextChanged"
+                            HorizontalOptions="Center"/>
+                        <Frame 
+                            HorizontalOptions="Center"
                             HeightRequest="{OnPlatform 60, Android=60, iOS=60, WinUI=100}" 
                             Padding="{OnPlatform 0, Android=0, iOS=0, WinUI=35}" 
+                            WidthRequest="100"
                             CornerRadius="20">
-                                <Frame.Margin>
-                                    <OnPlatform x:TypeArguments="Thickness">
-                                        <On Platform="iOS, Android" Value="10,10,10,0"/>
-                                        <On Platform="WinUI" Value="400,0,400,20"/>
-                                    </OnPlatform>
-                                </Frame.Margin>
-                                <Entry 
-                                    VerticalOptions="Center"
-                                    Placeholder="Название" 
-                                    Margin="10,0,0,0"
-                                    Keyboard="Default"
-                                    x:Name="NameEntry"/>
-                            </Frame>
-                            <HorizontalStackLayout>
-                                <Frame HorizontalOptions="Fill"
-                   HeightRequest="{OnPlatform 60, Android=60, iOS=60, WinUI=100}" 
-                   Padding="{OnPlatform 0, Android=0, iOS=0, WinUI=35}" 
-                           WidthRequest="100"
-                   CornerRadius="20">
-                                    <Frame.Margin>
-                                        <OnPlatform x:TypeArguments="Thickness">
-                                            <On Platform="iOS, Android" Value="10,10,0,0"/>
-                                            <On Platform="WinUI" Value="400,0,400,20"/>
-                                        </OnPlatform>
-                                    </Frame.Margin>
-                                    <Entry 
-                                        VerticalOptions="Center"
-                                        Placeholder="Цена" 
-                                        Margin="10,0,0,0"
-                                        Keyboard="Default"
-                                        x:Name="PriceEntry"/>
-                                </Frame>
-                                <Frame 
-                                    HorizontalOptions="Fill"
-                                    HeightRequest="{OnPlatform 60, Android=60, iOS=60, WinUI=100}" 
-                                    Padding="{OnPlatform 0, Android=0, iOS=0, WinUI=35}" 
-                                    WidthRequest="80"
-                                    CornerRadius="20">
-                                    <Frame.Margin>
-                                        <OnPlatform x:TypeArguments="Thickness">
-                                            <On Platform="iOS, Android" Value="10,10,0,0"/>
-                                            <On Platform="WinUI" Value="400,0,400,20"/>
-                                        </OnPlatform>
-                                    </Frame.Margin>
-                                    <Entry 
-                                        VerticalOptions="Center"
-                                        Placeholder="Валюта" 
-                                        Margin="5,0,0,0"
-                                        Keyboard="Default"
-                                        x:Name="CurrencyEntry"/>
-                                </Frame>
-                            </HorizontalStackLayout>
-                        </VerticalStackLayout>
+                            <Frame.Margin>
+                                <OnPlatform x:TypeArguments="Thickness">
+                                    <On Platform="iOS, Android" Value="10,10,0,0"/>
+                                    <On Platform="WinUI" Value="400,0,400,20"/>
+                                </OnPlatform>
+                            </Frame.Margin>
+                            <Entry 
+                               VerticalOptions="Center"
+                               Placeholder="Стол" 
+                               Margin="10,0,0,0"
+                               Keyboard="Default"
+                               x:Name="PriceEntry"/>
+                        </Frame>
                         <Button
-                        Text="Добавить"
-                        Clicked="ToMenuItemAddButtonClicked"
-                        Style="{StaticResource ButtonStyle}"
-                        Margin="0,10,0,10"/>
+                            Text="Отправить"
+                            Clicked="ToMenuItemPostButtonClicked"
+                            Style="{StaticResource ButtonStyle}"
+                            Margin="0,10,0,10"/>
                     </VerticalStackLayout>
                 </CollectionView.Header>
                 <CollectionView.Footer>
@@ -119,12 +84,12 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <SwipeView>
-                            <SwipeView.LeftItems>
+                            <SwipeView.LeftItems><!--Всплывающий элемент-->
                                 <SwipeItems>
                                     <SwipeItem
                                         IconImageSource="delete.png"
                                         BackgroundColor="#7D5642"
-                                        Invoked="OnDeleteMenuItemClick">
+                                        Invoked="OnAddMenuItemToOrderClick">
                                     </SwipeItem>
                                 </SwipeItems>
                             </SwipeView.LeftItems>
@@ -135,13 +100,12 @@
                                 CornerRadius="15"
                                 HasShadow="True">
                                 <VerticalStackLayout>
-                                    <HorizontalStackLayout>
-                                        <Label
-                                            LineBreakMode="WordWrap"
-                                            Text="{Binding Name}"
-                                            FontAttributes="Bold"
-                                            FontSize="Large"/>
-                                    </HorizontalStackLayout>
+                                    <!--Шаблон элемента-->
+                                    <Label
+                                         LineBreakMode="WordWrap"
+                                         Text="{Binding Name}"
+                                         FontAttributes="Bold"
+                                         FontSize="Large"/>
                                     <HorizontalStackLayout>
                                         <Label
                                             LineBreakMode="WordWrap"

@@ -12,10 +12,16 @@
         </Style>
     </ContentPage.Resources>
     <VerticalStackLayout
-        Spacing="30">
+        Spacing="10">
         <Button 
             Clicked="OnTablesViewButtonClicked"
             Text="Столы"
+            Margin="10"
+            Style="{StaticResource ButtonStyle}"/>
+        <Button 
+            Clicked="OnCreateOrderButtonClicked"
+            Text="Заказ"
+            Margin="10"
             Style="{StaticResource ButtonStyle}"/>
     </VerticalStackLayout>
 </ContentPage>
