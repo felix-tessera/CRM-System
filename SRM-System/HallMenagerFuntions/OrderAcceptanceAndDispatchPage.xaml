@@ -68,7 +68,7 @@
                                Placeholder="Стол" 
                                Margin="10,0,0,0"
                                Keyboard="Default"
-                               x:Name="PriceEntry"/>
+                               x:Name="TableEntry"/>
                         </Frame>
                         <Button
                             Text="Отправить"
@@ -89,11 +89,16 @@
                                     <SwipeItem
                                         IconImageSource="delete.png"
                                         BackgroundColor="#7D5642"
-                                        Invoked="OnAddMenuItemToOrderClick">
+                                        Invoked="OnDeleteToOrderMenuItemClick">
+                                    </SwipeItem>
+                                    <SwipeItem
+                                        IconImageSource="check.png"
+                                        BackgroundColor="#7D5642"
+                                        Invoked="OnAddToOrderMenuItemClick">
                                     </SwipeItem>
                                 </SwipeItems>
                             </SwipeView.LeftItems>
-                            <Frame 
+                            <Frame
                                 BorderColor="Black"
                                 Margin="5"
                                 Padding="5"

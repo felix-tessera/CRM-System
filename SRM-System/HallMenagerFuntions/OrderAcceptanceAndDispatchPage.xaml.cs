@@ -14,6 +14,10 @@ public partial class OrderAcceptanceAndDispatchPage : ContentPage
     }
     MenuItemService menuItemService = new MenuItemService();
     DataSearchService dataSearchService = new DataSearchService();
+    OrderService orderService = new OrderService();
+
+    ObservableCollection<MenuItemm> orderMenuItems = new ObservableCollection<MenuItemm>();
+
     private void ToRefreshingMenuItemsRefresh(object sender, EventArgs e)
     {
         MenuItemsRefresh.IsRefreshing = true;
@@ -23,19 +27,70 @@ public partial class OrderAcceptanceAndDispatchPage : ContentPage
         MenuItemsRefresh.IsRefreshing = false;
     }
 
-    private void OnAddMenuItemToOrderClick(object sender, EventArgs e)
-    {
-        
-    }
-
     private void ToMenuItemPostButtonClicked(object sender, EventArgs e)
     {
-
+        orderService.AddOrder(new Order
+        {
+            Table = TableEntry.Text,
+            OrderList = orderMenuItems
+        });
     }
 
     private async void OnSearchBarTextChanged(object sender, TextChangedEventArgs e)
     {
          await dataSearchService.SearchInMenuItemListAsync(MenuItemSearchBar.Text);
         MenuItemsCollectionView.ItemsSource = dataSearchService.SearchingMenuItems;
+    }
+
+    private void OnDeleteToOrderMenuItemClick(object sender, EventArgs e)
+    {
+        try
+        {
+            if (MenuItemsCollectionView.ItemsSource == dataSearchService.SearchingMenuItems)
+            {
+                orderMenuItems.Remove(dataSearchService.
+                SearchingMenuItems[dataSearchService.
+                SearchingMenuItems.
+                IndexOf((MenuItemm)MenuItemsCollectionView.
+                SelectedItem)]);
+            }
+            else if (MenuItemsCollectionView.ItemsSource == MenuItemsCollection.MenuItems)
+            {
+                orderMenuItems.Remove(MenuItemsCollection.
+                MenuItems[MenuItemsCollection.
+                MenuItems.
+                IndexOf((MenuItemm)MenuItemsCollectionView.
+                SelectedItem)]);
+            }
+        }
+        catch
+        {
+        }
+    }
+
+    private void OnAddToOrderMenuItemClick(object sender, EventArgs e)
+    {
+        try
+        {
+            if (MenuItemsCollectionView.ItemsSource == dataSearchService.SearchingMenuItems)
+            {
+                orderMenuItems.Add(dataSearchService.
+                SearchingMenuItems[dataSearchService.
+                SearchingMenuItems.
+                IndexOf((MenuItemm)MenuItemsCollectionView.
+                SelectedItem)]);
+            }
+            else if (MenuItemsCollectionView.ItemsSource == MenuItemsCollection.MenuItems)
+            {
+                orderMenuItems.Add(MenuItemsCollection.
+                MenuItems[MenuItemsCollection.
+                MenuItems.
+                IndexOf((MenuItemm)MenuItemsCollectionView.
+                SelectedItem)]);
+            }
+        }
+        catch
+        {
+        }
     }
 }

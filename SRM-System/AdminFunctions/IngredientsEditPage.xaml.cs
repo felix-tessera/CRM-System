@@ -33,7 +33,6 @@ public partial class IngredientsEditPage : ContentPage
 
         }
     }
-
 	private async void OnIngredientAddClicked(object sender, EventArgs e)
 	{
         if (NameEntry.Text != null && IdEntry.Text != null && QuantityEntry.Text != null && UnitEntry.Text != null)

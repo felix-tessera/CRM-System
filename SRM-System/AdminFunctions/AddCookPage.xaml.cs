@@ -23,7 +23,7 @@ public partial class AddCookPage : ContentPage
                 Name = NameEntry.Text,
                 Password = employeePassword.ByteArrayToString(passwordHash)
             };
-            await cookService.AddChief(cook);
+            await cookService.AddCook(cook);
         }
     }
 }
