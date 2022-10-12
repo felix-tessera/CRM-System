@@ -17,7 +17,7 @@ namespace SRM_System.Services
         {
             firebaseClient = new FirebaseClient(FirebaseDatabaseUrl);
         }
-        public async Task AddChief(Cook cook)
+        public async Task AddCook(Cook cook)
         {
             await firebaseClient
               .Child("Cook")
@@ -40,6 +40,22 @@ namespace SRM_System.Services
                 {
 
                 }
+            }
+        }
+        public async Task GetCooksPersons()
+        {
+            var cooks = await firebaseClient
+              .Child("Cook")
+              .OnceAsync<Cook>();
+            CummonCollection<Cook>.cummonList.Clear();
+            foreach(var cook in cooks)
+            {
+                CummonCollection<Cook>.cummonList.Add(new Cook
+                {
+                    Login = cook.Object.Login,
+                    Password = cook.Object.Password,
+                    Name = cook.Object.Name
+                });
             }
         }
     }
