@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SRM_System.ChiefMainPage"
              Shell.NavBarIsVisible="False"
-             x:DataType="models:MenuItemm"
              xmlns:models="clr-namespace:SRM_System.Models"
+             x:DataType="models:Order"
              Title="Кухня">
     <ContentPage.Resources>
         <Style x:Key="ButtonStyle" TargetType="Button">
@@ -34,23 +34,82 @@
         </Style>
     </ContentPage.Resources>
     <!--Стили-->
-    <VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout>
         <RefreshView
             x:Name="MenuItemsRefresh"
             Refreshing="ToRefreshingMenuItemsRefresh"
             RefreshColor="#506D2F">
-            <CarouselView
+                <CarouselView
+                HeightRequest="150"
                 x:Name="CooksCollectionCarouselView"
-                PeekAreaInsets="100"><!--Представление поваров-->
+                PeekAreaInsets="120">
+                    <!--Представление поваров-->
                 <CarouselView.ItemTemplate>
                     <DataTemplate
-                            x:DataType="models:Cook"><!--Шаблон данных для представления поваров-->
-                        <Label
-                            Text="{Binding Name}"/>
-
+                            x:DataType="models:Cook">
+                        <!--Шаблон данных для представления поваров-->
+                        <Frame
+                            Margin="5"
+                            BorderColor="Black">
+                            <VerticalStackLayout
+                            Margin="10">
+                                <Image
+                            Source="chief.png"
+                                WidthRequest="60"/>
+                                <Label
+                            Text="{Binding Name}"
+                            HorizontalOptions="Center"
+                            FontSize="Medium"
+                            FontAttributes="Bold"/>
+                            </VerticalStackLayout>
+                        </Frame>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
         </RefreshView>
+            <Button
+                Style="{StaticResource ButtonStyle}"
+                Text="Обновить"
+                Clicked="OnRefreshButtonClicked"/>
+
+            <CollectionView
+            SelectionMode="Single"
+            x:Name="MenuItemsCollectionView">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <!--Шаблон меню-->
+                    <DataTemplate      
+                    x:DataType="models:MenuItemm">
+
+                        <SwipeView>
+                            <SwipeView.LeftItems>
+                                <SwipeItems>
+                                    <SwipeItem
+                                        IconImageSource="check.png"
+                                        BackgroundColor="#7D5642"
+                                        Invoked="ToMenuItemDoneClick">
+
+                                    </SwipeItem>
+                                    <SwipeItem
+                                        IconImageSource="set.png"
+                                        BackgroundColor="#7D5642"
+                                        Invoked="ToSetMenuItemClick">
+
+                                    </SwipeItem>
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+                            <Frame
+                            Margin="3">
+                                <Label
+                                Text="{Binding Name}"/>
+                            </Frame>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
     </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

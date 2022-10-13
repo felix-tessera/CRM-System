@@ -27,13 +27,15 @@ public partial class OrderAcceptanceAndDispatchPage : ContentPage
         MenuItemsRefresh.IsRefreshing = false;
     }
 
-    private void ToMenuItemPostButtonClicked(object sender, EventArgs e)
+    private async void ToMenuItemPostButtonClicked(object sender, EventArgs e)
     {
-        orderService.AddOrder(new Order
+        await orderService.AddOrder(new Order
         {
             Table = TableEntry.Text,
             OrderList = orderMenuItems
         });
+        orderMenuItems.Clear();
+
     }
 
     private async void OnSearchBarTextChanged(object sender, TextChangedEventArgs e)
