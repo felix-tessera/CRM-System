@@ -18,7 +18,7 @@ namespace SRM_System.Services
         {
             firebaseClient = new FirebaseClient(FirebaseDatabaseUrl);
         }
-        public async void AddOrder(Order order)
+        public async Task AddOrder(Order order)
         {
             var ord = await firebaseClient
             .Child("Order")
@@ -29,11 +29,58 @@ namespace SRM_System.Services
                .Child(order.Key)
                .PutAsync(order);
         }
-        public async void GetOrder()
+        public async Task GetOrders()
         {
             var ord = await firebaseClient
             .Child("Order")
             .OnceAsync<Order>();
+            OrdersCollection.orders.Clear();
+            MenuItemsFromOrdersCollection.menuItemmsFromOrders.Clear();
+            foreach (var order in ord)
+            {
+                if (order.Object.OrderList != null)
+                {
+                    OrdersCollection.orders.Add(new Order
+                    {
+                        Key = order.Object.Key,
+                        OrderList = order.Object.OrderList,
+                        Table = order.Object.Table
+                    });
+                    for (int i = 0; i < order.Object.OrderList.Count; i++)
+                    {
+                        try
+                        {
+                            MenuItemsFromOrdersCollection.menuItemmsFromOrders.Add(new MenuItemm
+                            {
+                                OrderKey = order.Object.Key,
+                                Key = i.ToString(),
+                                Name = order.Object.OrderList[i].Name += $" {order.Object.Table} столик"
+                            });
+                        }
+                        catch { }
+                    } 
+                }
+                else
+                {
+                    await RemoveOrder(order.Object.Key);
+                }
+            }
+        }
+        public async Task RemoveMenuItemFromOrder(string OrderKey, string Index)
+        {
+            await firebaseClient
+                .Child("Order")
+                .Child(OrderKey)
+                .Child("OrderList")
+                .Child(Index)
+                .DeleteAsync();
+        }
+        public async Task RemoveOrder(string Key)
+        {
+            await firebaseClient
+               .Child("Order")
+               .Child(Key)
+               .DeleteAsync();
 
         }
     }

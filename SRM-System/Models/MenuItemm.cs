@@ -9,6 +9,7 @@ namespace SRM_System.Models
 {
     public class MenuItemm
     {
+        public string OrderKey { get; set; }
         public string Key { get; set; }
         public string Name { get; set; }
         public string Price { get; set; }
