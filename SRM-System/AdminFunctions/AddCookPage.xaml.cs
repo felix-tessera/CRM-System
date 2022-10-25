@@ -21,7 +21,8 @@ public partial class AddCookPage : ContentPage
             {
                 Login = LoginEntry.Text,
                 Name = NameEntry.Text,
-                Password = employeePassword.ByteArrayToString(passwordHash)
+                Password = employeePassword.ByteArrayToString(passwordHash),
+                CookMenuItems = new System.Collections.ObjectModel.ObservableCollection<MenuItemm>() { new MenuItemm() {Name = "Empty" } }
             };
             await cookService.AddCook(cook);
         }

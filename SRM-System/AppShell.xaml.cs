@@ -23,6 +23,7 @@ public partial class AppShell : Shell
         Routing.RegisterRoute("IngredientsEditPage", typeof(IngredientsEditPage));
         Routing.RegisterRoute("MenuEditPage", typeof(MenuEditPage));
         Routing.RegisterRoute("OrderAcceptanceAndDispatchPage", typeof(OrderAcceptanceAndDispatchPage));
+        Routing.RegisterRoute("ViewDomeMenuItems", typeof(ViewDomeMenuItems));
     }
     protected override void OnAppearing()
     {

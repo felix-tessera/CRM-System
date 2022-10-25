@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace SRM_System.Models
 {
-    public class CummonCollection
+    public class CooksNameCollection
     {
-        public static ObservableCollection<Cook> cooksList = new ObservableCollection<Cook>();
+        public static ObservableCollection<string> cooksNames = new ObservableCollection<string>();
     }
 }

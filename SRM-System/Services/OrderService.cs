@@ -83,5 +83,14 @@ namespace SRM_System.Services
                .DeleteAsync();
 
         }
+        public async Task RemoveMenuItemFromCookMenuItemsList(string CookKey, string Index)
+        {
+            await firebaseClient
+                .Child("Cook")
+                .Child(CookKey)
+                .Child("CookMenuItems")
+                .Child(Index)
+                .DeleteAsync();
+        }
     }
 }

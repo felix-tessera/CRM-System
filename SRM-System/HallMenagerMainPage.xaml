@@ -23,5 +23,10 @@
             Text="Заказ"
             Margin="10"
             Style="{StaticResource ButtonStyle}"/>
+        <Button 
+            Clicked="OnDoneMenuItemsButtonClicked"
+            Text="Готовые заказы"
+            Margin="10"
+            Style="{StaticResource ButtonStyle}"/>
     </VerticalStackLayout>
 </ContentPage>

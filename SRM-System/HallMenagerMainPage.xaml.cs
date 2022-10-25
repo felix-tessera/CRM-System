@@ -16,4 +16,9 @@ public partial class HallMenagerMainPage : ContentPage
 	{
         await Shell.Current.GoToAsync("OrderAcceptanceAndDispatchPage");
     }
+
+	private async void OnDoneMenuItemsButtonClicked(object sender, EventArgs e)
+	{
+		await Shell.Current.GoToAsync("ViewDomeMenuItems");
+	}
 }
