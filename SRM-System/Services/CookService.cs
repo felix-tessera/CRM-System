@@ -19,11 +19,16 @@ namespace SRM_System.Services
         }
         public async Task AddCook(Cook cook)
         {
-            await firebaseClient
+           var ck = await firebaseClient
               .Child("Cook")
               .PostAsync(cook);
+            cook.Key = ck.Key;
+            await firebaseClient
+                .Child("Cook")
+                .Child(cook.Key)
+                .PutAsync(cook);
         }
-        public async void GetCooks(string Login, string Password)
+        public async void GetCook(string Login, string Password)
         {
             var cooks = await firebaseClient
               .Child("Cook")
@@ -33,6 +38,13 @@ namespace SRM_System.Services
             {
                 if (cook.Object.Login == Login && cook.Object.Password == Password)
                 {
+                    Common.GlogalCookService.CurrentCookPerson = new Cook{
+                        Login = cook.Object.Login,
+                        Password = cook.Object.Password,
+                        Name = cook.Object.Name,
+                        CookMenuItems = cook.Object.CookMenuItems,
+                        Key = cook.Object.Key
+                    };
                     await Shell.Current.GoToAsync("CookMainPage");
                     return;
                 }
@@ -47,16 +59,25 @@ namespace SRM_System.Services
             var cooks = await firebaseClient
               .Child("Cook")
               .OnceAsync<Cook>();
-            CummonCollection<Cook>.cummonList.Clear();
+            CummonCollection.cooksList.Clear();
             foreach(var cook in cooks)
             {
-                CummonCollection<Cook>.cummonList.Add(new Cook
+                CummonCollection.cooksList.Add(new Cook
                 {
                     Login = cook.Object.Login,
                     Password = cook.Object.Password,
-                    Name = cook.Object.Name
+                    Name = cook.Object.Name,
+                    CookMenuItems = cook.Object.CookMenuItems,
+                    Key = cook.Object.Key
                 });
             }
+        }
+        public async Task UpdateCook(Cook cook)
+        {
+            await firebaseClient
+                .Child("Cook")
+                .Child(cook.Key)
+                .PutAsync(cook);
         }
     }
 }

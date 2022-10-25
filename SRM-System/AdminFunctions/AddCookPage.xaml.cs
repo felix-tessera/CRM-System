@@ -21,8 +21,11 @@ public partial class AddCookPage : ContentPage
             {
                 Login = LoginEntry.Text,
                 Name = NameEntry.Text,
-                Password = employeePassword.ByteArrayToString(passwordHash)
+                Password = employeePassword.ByteArrayToString(passwordHash),
+                CookMenuItems = new System.Collections.ObjectModel.ObservableCollection<MenuItemm>() { new MenuItemm() {Name = "Empty" } }
             };
+            LoginEntryFrame.BorderColor = Color.FromRgb(80, 110, 47);
+            PasswordEntryFrame.BorderColor = Color.FromRgb(80, 110, 47);
             await cookService.AddCook(cook);
         }
     }

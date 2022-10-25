@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:SRM_System.Models"
+             x:Class="SRM_System.HallMenagerFuntions.ViewDomeMenuItems"
+             Title="ViewDomeMenuItems">
+    <ContentPage.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#2A2922"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="WidthRequest" Value="150"/>
+        </Style>
+        <Style TargetType="SwipeView">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="White"/>
+                            </VisualState.Setters>
+                        </VisualState>
+
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="#7D5642" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <RefreshView
+        x:Name="DoneMenuItemsRefresh"
+        Refreshing="ToRefreshingDoneMenuItemsRefresh"
+        RefreshColor="#506D2F">
+        <CollectionView 
+            SelectionMode="Single"
+            x:Name="DoneMenuItemsCollectionView">
+            <CollectionView.ItemTemplate>
+                <DataTemplate
+                    x:DataType="models:MenuItemm">
+                    <SwipeView>
+                        <SwipeView.LeftItems>
+                            <SwipeItems>
+                                <SwipeItem
+                                        IconImageSource="check.png"
+                                        BackgroundColor="#7D5642"
+                                        Invoked="OnCheckMenuItemClick">
+                                </SwipeItem>
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
+                        <Frame 
+                            BorderColor="Black"
+                            Margin="5"
+                            Padding="5"
+                            CornerRadius="15"
+                            HasShadow="True">
+                            <VerticalStackLayout>
+                                <HorizontalStackLayout>
+                                    <Label
+                                        LineBreakMode="WordWrap"
+                                        Text="{Binding Name}"
+                                        FontAttributes="Bold"
+                                        FontSize="Large"/>
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>

@@ -1,3 +1,4 @@
+using SRM_System.Common;
 using SRM_System.LogInEmoloyee;
 using SRM_System.Models;
 using SRM_System.Services;
@@ -24,7 +25,9 @@ public partial class AddChiefPage : ContentPage
 				Name = NameEntry.Text,
 				Password = employeePassword.ByteArrayToString(passwordHash)
 			};
-		await chiefService.AddChief(chief);
-		}
+            LoginEntryFrame.BorderColor = Color.FromRgb(80, 110, 47);
+			PasswordEntryFrame.BorderColor = Color.FromRgb(80, 110, 47);
+            await chiefService.AddChief(chief);
+        }
 	}
 }

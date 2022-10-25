@@ -40,38 +40,68 @@
             x:Name="MenuItemsRefresh"
             Refreshing="ToRefreshingMenuItemsRefresh"
             RefreshColor="#506D2F">
-                <CarouselView
-                HeightRequest="150"
-                x:Name="CooksCollectionCarouselView"
-                PeekAreaInsets="120">
+                <CollectionView
+                    SelectionMode="Single"
+                    HeightRequest="150"
+                    SelectionChanged="OnChiefViewManuItemsClick"
+                    x:Name="CooksCollectionCarouselView">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Horizontal"/>
+                    </CollectionView.ItemsLayout>
                     <!--Представление поваров-->
-                <CarouselView.ItemTemplate>
+                <CollectionView.ItemTemplate>
                     <DataTemplate
                             x:DataType="models:Cook">
                         <!--Шаблон данных для представления поваров-->
-                        <Frame
-                            Margin="5"
-                            BorderColor="Black">
+                            <SwipeView>
+                                <Frame
+                                    Margin="5"
+                                    BorderColor="Black">
                             <VerticalStackLayout
-                            Margin="10">
+                                Margin="10">
                                 <Image
-                            Source="chief.png"
+                                    Source="chief.png"
                                 WidthRequest="60"/>
                                 <Label
-                            Text="{Binding Name}"
-                            HorizontalOptions="Center"
-                            FontSize="Medium"
-                            FontAttributes="Bold"/>
+                                    Text="{Binding Name}"
+                                    HorizontalOptions="Center"
+                                    FontSize="Medium"
+                                    FontAttributes="Bold"/>
                             </VerticalStackLayout>
                         </Frame>
-                    </DataTemplate>
-                </CarouselView.ItemTemplate>
-            </CarouselView>
+                            </SwipeView>
+                        </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </RefreshView>
-            <Button
+            <StackLayout
+                Orientation="Horizontal">
+                <Button
                 Style="{StaticResource ButtonStyle}"
                 Text="Обновить"
-                Clicked="OnRefreshButtonClicked"/>
+                Clicked="OnRefreshButtonClicked"
+                Margin="5"/>
+            <Border
+                Stroke="Black"
+                StrokeShape="RoundRectangle 7,7,7,7"
+                Margin="5"
+                WidthRequest="150"
+                HorizontalOptions="Center">
+                <Picker
+                    Title="Назначить"
+                    SelectedIndexChanged="OnChiefAssignSelect"
+                    TitleColor="Black"
+                    HorizontalOptions="Center"
+                    x:Name="CookPicker">
+                </Picker>
+            </Border>
+                <Button
+                    Style="{StaticResource ButtonStyle}"
+                Text="•"
+                Clicked="OnViewAllMenuItemsButtonClicked"
+                Margin="5"
+                    WidthRequest="40"/>
+            </StackLayout>
 
             <CollectionView
             SelectionMode="Single"
@@ -91,13 +121,6 @@
                                         IconImageSource="check.png"
                                         BackgroundColor="#7D5642"
                                         Invoked="ToMenuItemDoneClick">
-
-                                    </SwipeItem>
-                                    <SwipeItem
-                                        IconImageSource="set.png"
-                                        BackgroundColor="#7D5642"
-                                        Invoked="ToSetMenuItemClick">
-
                                     </SwipeItem>
                                 </SwipeItems>
                             </SwipeView.LeftItems>

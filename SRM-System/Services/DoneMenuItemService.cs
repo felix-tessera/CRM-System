@@ -17,7 +17,7 @@ namespace SRM_System.Services
         {
             firebaseClient = new FirebaseClient(FirebaseDatabaseUrl);
         }
-        public async void AddDoneMenuItem(MenuItemm menuItemm)
+        public async Task AddDoneMenuItem(MenuItemm menuItemm)
         {
             var dmi = await firebaseClient
             .Child("DoneMenuItems")
@@ -27,6 +27,23 @@ namespace SRM_System.Services
                .Child("DoneMenuItems")
                .Child(menuItemm.Key)
                .PutAsync(menuItemm);
+        }
+        public async void GetDoneMenuItems()
+        {
+            var donemenuitems = await firebaseClient
+                .Child("DoneMenuItems")
+                .OnceAsync<MenuItemm>();
+            DoneMenuItemsCollection.doneItems.Clear();
+            foreach (var menuItem in donemenuitems)
+            {
+                DoneMenuItemsCollection.doneItems.Add(new MenuItemm
+                {
+                    Key = menuItem.Object.Key,
+                    Currency = menuItem.Object.Currency,
+                    Name = menuItem.Object.Name,
+                    Price = menuItem.Object.Price,
+                });
+            }
         }
     }
 }

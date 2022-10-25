@@ -98,6 +98,9 @@
 	  <MauiXaml Update="HallMenagerFuntions\OrderAcceptanceAndDispatchPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="HallMenagerFuntions\ViewDomeMenuItems.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="HallMenagerFuntions\ViewTablesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
