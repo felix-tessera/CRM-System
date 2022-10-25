@@ -28,6 +28,7 @@
                        x:Name="NameEntry"/>
         </Frame>
         <Frame HorizontalOptions="FillAndExpand"
+               x:Name="LoginEntryFrame"
                    HeightRequest="{OnPlatform 60, Android=60, iOS=60, WinUI=100}" 
                    Padding="{OnPlatform 0, Android=0, iOS=0, WinUI=35}" 
                    CornerRadius="50">
@@ -45,6 +46,7 @@
         </Frame>
 
         <Frame HorizontalOptions="FillAndExpand" 
+               x:Name="PasswordEntryFrame"
                    HeightRequest="{OnPlatform 60, Android=60, iOS=60, WinUI=100}" 
                    Padding="{OnPlatform 0, Android=0, iOS=0, WinUI=35}"  
                    CornerRadius="50">

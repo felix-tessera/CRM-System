@@ -84,7 +84,7 @@ public partial class ChiefMainPage : ContentPage
 					.IndexOf((Cook)CooksCollectionCarouselView.SelectedItem)].CookMenuItems
 					.IndexOf((MenuItemm)MenuItemsCollectionView.SelectedItem).ToString());
 				//удаление в коллекции
-                CummonCollection.cooksList[CummonCollection.cooksList
+                CummonCollection.cooksList[CummonCollection.cooksList	
 				.IndexOf((Cook)CooksCollectionCarouselView.SelectedItem)].CookMenuItems.RemoveAt(CummonCollection.cooksList[CummonCollection.cooksList
 				.IndexOf((Cook)CooksCollectionCarouselView.SelectedItem)].CookMenuItems.IndexOf((MenuItemm)MenuItemsCollectionView.SelectedItem));
             }

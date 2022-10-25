@@ -27,7 +27,7 @@ public partial class LoginPage : ContentPage
                 CheckAdminPassword.ByteArrayToString(checkAdmin.OnePasswordHash(PasswordEntry.Text)));
             chiefService.GetChief(LoginEntry.Text,
                 employeePassword.ByteArrayToString(employeePassword.OnePasswordHash(PasswordEntry.Text)));
-            cookService.GetCooks(LoginEntry.Text,
+            cookService.GetCook(LoginEntry.Text,
                 employeePassword.ByteArrayToString(employeePassword.OnePasswordHash(PasswordEntry.Text)));
             hallMenagerService.GetHallMenager(LoginEntry.Text,
                 employeePassword.ByteArrayToString(employeePassword.OnePasswordHash(PasswordEntry.Text)));

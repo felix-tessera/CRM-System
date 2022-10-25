@@ -28,7 +28,7 @@ namespace SRM_System.Services
                 .Child(cook.Key)
                 .PutAsync(cook);
         }
-        public async void GetCooks(string Login, string Password)
+        public async void GetCook(string Login, string Password)
         {
             var cooks = await firebaseClient
               .Child("Cook")
@@ -38,6 +38,13 @@ namespace SRM_System.Services
             {
                 if (cook.Object.Login == Login && cook.Object.Password == Password)
                 {
+                    Common.GlogalCookService.CurrentCookPerson = new Cook{
+                        Login = cook.Object.Login,
+                        Password = cook.Object.Password,
+                        Name = cook.Object.Name,
+                        CookMenuItems = cook.Object.CookMenuItems,
+                        Key = cook.Object.Key
+                    };
                     await Shell.Current.GoToAsync("CookMainPage");
                     return;
                 }

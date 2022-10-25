@@ -13,6 +13,7 @@ namespace SRM_System.Services
     {
         private const string FirebaseDatabaseUrl = "https://smr-system-data-default-rtdb.firebaseio.com/";
         private readonly FirebaseClient firebaseClient;
+        public bool isNameMatch = true;
         public ChiefService()
         {
             firebaseClient = new FirebaseClient(FirebaseDatabaseUrl);
