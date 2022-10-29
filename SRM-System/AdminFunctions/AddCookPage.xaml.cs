@@ -10,6 +10,15 @@ public partial class AddCookPage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    public Cook Cook
+    {
+        get => default;
+        set
+        {
+        }
+    }
+
     private async void OnAddEmployeeButtonClicked(object sender, EventArgs e)
     {
         if (LoginEntry.Text != null && NameEntry.Text != null && PasswordEntry.Text != null)

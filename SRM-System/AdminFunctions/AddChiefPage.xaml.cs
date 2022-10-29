@@ -12,6 +12,14 @@ public partial class AddChiefPage : ContentPage
 		InitializeComponent();
 	}
 
+	public Chief Chief
+	{
+		get => default;
+		set
+		{
+		}
+	}
+
 	private async void OnAddEmployeeButtonClicked(object sender, EventArgs e)
 	{
 		if (LoginEntry.Text != null && NameEntry.Text != null && PasswordEntry.Text != null)

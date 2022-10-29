@@ -45,5 +45,12 @@ namespace SRM_System.Services
                 });
             }
         }
+        public async void RemoveDoneItem(string key)
+        {
+            await firebaseClient
+                .Child("DoneMenuItems")
+                .Child(key)
+                .DeleteAsync();
+        }
     }
 }

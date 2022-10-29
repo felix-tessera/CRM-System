@@ -15,6 +15,15 @@ public partial class TablesEditPage : ContentPage
         tableService.GetTables();
         TablesCollectionView.ItemsSource = TablesCollection.Tables;
     }
+
+    public Table Table
+    {
+        get => default;
+        set
+        {
+        }
+    }
+
     TableService tableService = new TableService();
 	private async void OnAddTableButtonClicked(object sender, EventArgs e)
 	{
