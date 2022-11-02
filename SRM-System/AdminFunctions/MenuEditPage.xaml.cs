@@ -13,6 +13,15 @@ public partial class MenuEditPage : ContentPage
         menuItemService.GetMenuItems();
 		MenuItemsCollectionView.ItemsSource = MenuItemsCollection.MenuItems;
     }
+
+    public MenuItemm MenuItemm
+    {
+        get => default;
+        set
+        {
+        }
+    }
+
     MenuItemService menuItemService = new MenuItemService();
 	private async void ToMenuItemAddButtonClicked(object sender, EventArgs e)
 	{

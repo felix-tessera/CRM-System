@@ -10,6 +10,15 @@ public partial class AddHallManagerPage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    public HallMenager HallMenager
+    {
+        get => default;
+        set
+        {
+        }
+    }
+
     private async void OnAddEmployeeButtonClicked(object sender, EventArgs e)
     {
         if (LoginEntry.Text != null && NameEntry.Text != null && PasswordEntry.Text != null)

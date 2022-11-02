@@ -12,6 +12,15 @@ public partial class OrderAcceptanceAndDispatchPage : ContentPage
         menuItemService.GetMenuItems();
         MenuItemsCollectionView.ItemsSource = MenuItemsCollection.MenuItems;
     }
+
+    public ViewDomeMenuItems ViewDomeMenuItems
+    {
+        get => default;
+        set
+        {
+        }
+    }
+
     MenuItemService menuItemService = new MenuItemService();
     DataSearchService dataSearchService = new DataSearchService();
     OrderService orderService = new OrderService();

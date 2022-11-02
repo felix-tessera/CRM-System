@@ -12,7 +12,16 @@ public partial class IngredientsEditPage : ContentPage
 		ingredientsService.GetIngregients();
 		IngredientsCollectionView.ItemsSource = IngredientsCollection.Ingredients;
 	}
-	IngredientsService ingredientsService = new IngredientsService();
+
+    public Ingredient Ingredient
+    {
+        get => default;
+        set
+        {
+        }
+    }
+
+    IngredientsService ingredientsService = new IngredientsService();
 
 	private void OnDeleteIngredientClick(object sender, EventArgs e)
 	{

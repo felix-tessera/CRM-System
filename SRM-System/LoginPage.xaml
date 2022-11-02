@@ -14,7 +14,7 @@
     <VerticalStackLayout
         BackgroundColor="#FFFFFF"
         Spacing="70">
-<!--Вертикальный контейнер для всех элементов на странице-->
+        <!--Вертикальный контейнер для всех элементов на странице-->
         <VerticalStackLayout
             Margin="0, 100, 0, 0">
             <Image Source="user.png"
@@ -66,15 +66,14 @@
                 x:Name="RegisterLabel"
                 HorizontalTextAlignment="Center"
                 Margin="10"
-                Text="Зарегестроваться как админинстратор"
+                Text="Зарегестроваться как администратор"
                 TextColor="#506D2F"
                 TextDecorations="Underline">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnTapAmdinRegistationLink"/>
                 </Label.GestureRecognizers>
             </Label>
-            
+
         </VerticalStackLayout>
     </VerticalStackLayout>
-
 </ContentPage>
